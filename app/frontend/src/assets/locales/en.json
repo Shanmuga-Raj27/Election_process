@@ -1,0 +1,199 @@
+{
+  "hero": {
+    "title": "Digital India Election Process",
+    "subtitle": "Understand voting, elections, and democracy in a simple interactive way.",
+    "ctaStart": "Start Learning",
+    "ctaRegister": "Register to Vote",
+    "ctaAsk": "Ask AI Assistant"
+  },
+  "nav": {
+    "home": "Home",
+    "process": "Election Process",
+    "types": "Types of Elections",
+    "registration": "Voter Registration",
+    "awareness": "Awareness",
+    "faq": "FAQ",
+    "ai": "AI Assistant"
+  },
+  "intro": {
+    "title": "What are Elections?",
+    "desc1": "Elections are the foundation of a democratic society. It is the process by which citizens choose their leaders and representatives.",
+    "desc2": "By voting, you actively participate in deciding the future of the country and ensuring your voice is heard."
+  },
+  "whyVoting": {
+    "title": "Why Voting Matters",
+    "cards": {
+      "voice": {
+        "title": "Equal Voice",
+        "desc": "Every citizen's vote carries equal weight, regardless of background."
+      },
+      "democracy": {
+        "title": "Strengthens Democracy",
+        "desc": "High voter participation builds a stronger, more representative government."
+      },
+      "responsibility": {
+        "title": "Civic Duty",
+        "desc": "Voting is both a fundamental right and a core responsibility."
+      }
+    }
+  },
+  "process": {
+    "title": "The Election Journey",
+    "steps": {
+      "announcement": {
+        "title": "Election Announcement",
+        "desc": "The Election Commission of India announces the schedule."
+      },
+      "nomination": {
+        "title": "Candidate Nomination",
+        "desc": "Candidates file their nomination papers."
+      },
+      "campaign": {
+        "title": "Campaign Period",
+        "desc": "Candidates present their vision to the voters."
+      },
+      "verification": {
+        "title": "Voter Verification",
+        "desc": "Citizens check their names on the electoral roll."
+      },
+      "voting": {
+        "title": "Voting Day",
+        "desc": "Voters cast their ballots securely using EVMs."
+      },
+      "counting": {
+        "title": "Vote Counting",
+        "desc": "Votes are counted under strict supervision."
+      },
+      "results": {
+        "title": "Election Results",
+        "desc": "Winners are declared and the new government forms."
+      }
+    }
+  },
+  "types": {
+    "title": "Types of Elections",
+    "cards": {
+      "loksabha": {
+        "title": "Lok Sabha Election",
+        "desc": "General elections to elect Members of Parliament (MPs) to the lower house, who in turn select the Prime Minister."
+      },
+      "rajyasabha": {
+        "title": "Rajya Sabha Election",
+        "desc": "Indirect elections where Members of Legislative Assemblies (MLAs) elect representatives to the upper house."
+      },
+      "assembly": {
+        "title": "State Assembly Election",
+        "desc": "Elections to elect MLAs who form the state government and choose the Chief Minister."
+      },
+      "local": {
+        "title": "Local Body Elections",
+        "desc": "Elections for municipalities, panchayats, and local councils to manage local governance."
+      }
+    }
+  },
+  "compare": {
+    "title": "Lok Sabha vs Rajya Sabha",
+    "labels": {
+      "title": "Title",
+      "rep": "Representation",
+      "method": "Election Method",
+      "term": "Term Length",
+      "role": "Primary Role"
+    },
+    "loksabha": {
+      "title": "House of the People (Lower House)",
+      "rep": "Represents the people of India.",
+      "method": "Citizens directly elect members through general elections, giving them a direct voice in national decisions.",
+      "term": "Normally has a term of 5 years.",
+      "role": "Plays an important role in forming the central government (the Prime Minister is usually from here). Mainly handles public issues, financial matters, and government accountability."
+    },
+    "rajyasabha": {
+      "title": "Council of States (Upper House)",
+      "rep": "Represents the states of India, helping protect the interests of states in Parliament.",
+      "method": "Members are chosen indirectly by elected state representatives (MLAs).",
+      "term": "Members serve for 6 years. It is a permanent house and is never fully dissolved.",
+      "role": "Reviews bills/laws passed by Lok Sabha, discusses national issues, and provides stability in the law-making process."
+    }
+  },
+  "registration": {
+    "title": "Voter Registration Guide",
+    "steps": {
+      "1": "Check Eligibility",
+      "2": "Fill Form 6",
+      "3": "Submit Documents",
+      "4": "Receive EPIC Card"
+    },
+    "official_links_title": "Official Registration Links",
+    "link_form6": "New Voter Registration (Form 6)",
+    "link_vsp": "Voters’ Services Portal",
+    "link_help": "ECI Registration Information"
+  },
+  "eligibility": {
+    "title": "Eligibility Criteria",
+    "items": {
+      "age": "18+ Years of Age",
+      "citizen": "Indian Citizen",
+      "address": "Ordinary Resident of the polling area",
+      "sound": "Not disqualified by law"
+    }
+  },
+  "awareness": {
+    "title": "Election Awareness",
+    "cards": {
+      "fakenews": {
+        "title": "Avoid Fake News",
+        "desc": "Verify information before sharing it with others."
+      },
+      "verify": {
+        "title": "Verify Information",
+        "desc": "Always check official sources like the Election Commission website."
+      },
+      "respect": {
+        "title": "Respect Democracy",
+        "desc": "Respect the electoral process and the right of others to vote."
+      },
+      "responsible": {
+        "title": "Vote Responsibly",
+        "desc": "Make an informed decision based on facts and candidate history."
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": {
+      "1": {
+        "q": "How to register for a Voter ID?",
+        "a": "You can register online through the Voter's Service Portal (voters.eci.gov.in) or offline by filling Form 6 at your local Electoral Registration Office."
+      },
+      "2": {
+        "q": "What is an EVM?",
+        "a": "EVM stands for Electronic Voting Machine. It is an electronic device used for recording votes securely and reliably."
+      },
+      "3": {
+        "q": "Can I vote without a Voter ID card?",
+        "a": "If your name is on the electoral roll, you can vote using alternate approved photo identity documents like Aadhaar, PAN Card, Driving License, etc."
+      },
+      "4": {
+        "q": "What documents are required for registration?",
+        "a": "You need a passport-sized photograph, an age proof (like birth certificate or Aadhaar), and an address proof (like electricity bill or passport)."
+      },
+      "5": {
+        "q": "How are votes counted?",
+        "a": "Votes recorded in EVMs are counted electronically in the presence of candidates or their agents on a specified counting day under strict security."
+      }
+    }
+  },
+  "footer": {
+    "about": "About the Project",
+    "disclaimer": "This platform is purely for educational purposes and is politically neutral.",
+    "links": "Important Links",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "official": "Official Resources",
+    "eci": "Election Commission of India",
+    "vsp": "Voters' Services Portal",
+    "form6": "Form 6 Registration",
+    "help": "ECI Help Resources",
+    "github": "GitHub Repository"
+  }
+}
