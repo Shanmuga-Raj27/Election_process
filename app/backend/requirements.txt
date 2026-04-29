@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+pydantic-settings
+google-genai
+python-dotenv
+pytest
+pytest-mock
+httpx
+requests
