@@ -1,0 +1,17 @@
+# Backend Secrets
+app/backend/.env
+app/backend/*.db
+app/backend/*.sqlite3
+
+# Frontend Secrets
+app/frontend/.env
+app/frontend/.env.local
+
+# Dependency folders
+node_modules/
+app/backend/.venv/
+app/backend/__pycache__/
+
+# System files
+.DS_Store
+Thumbs.db
