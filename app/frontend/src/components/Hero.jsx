@@ -8,17 +8,20 @@ const Hero = () => {
   return (
     <div className="relative bg-white overflow-hidden min-h-[90vh] flex items-center">
       {/* Background with abstract wave and particle effects */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-green-50 opacity-70"></div>
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Indian Flag Inspired Background Bands */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FF9933]/15 via-white/80 to-[#138808]/15"></div>
+        <div className="absolute top-0 w-full h-1/3 bg-[#FF9933]/5 blur-[120px]"></div>
+        <div className="absolute bottom-0 w-full h-1/3 bg-[#138808]/5 blur-[120px]"></div>
         <motion.div 
           animate={{ scale: [1, 1.05, 1], rotate: [0, 2, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-saffron/10 rounded-full blur-3xl"
+          className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[#FF9933]/15 rounded-full blur-3xl"
         ></motion.div>
         <motion.div 
           animate={{ scale: [1, 1.1, 1], rotate: [0, -2, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-green/10 rounded-full blur-3xl"
+          className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-[#138808]/15 rounded-full blur-3xl"
         ></motion.div>
       </div>
 

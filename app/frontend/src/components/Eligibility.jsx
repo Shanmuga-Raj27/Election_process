@@ -6,10 +6,10 @@ const Eligibility = () => {
   const { t } = useTranslation();
 
   const criteria = [
-    { id: 'age', icon: <UserPlus className="w-6 h-6 text-saffron" /> },
-    { id: 'citizen', icon: <Flag className="w-6 h-6 text-navy" /> },
-    { id: 'address', icon: <HomeIcon className="w-6 h-6 text-green" /> },
-    { id: 'sound', icon: <CheckCircle2 className="w-6 h-6 text-blue-500" /> }
+    { id: 'age', icon: <UserPlus className="w-8 h-8 text-saffron" />, color: "bg-orange-50" },
+    { id: 'citizen', icon: <Flag className="w-8 h-8 text-navy" />, color: "bg-blue-50" },
+    { id: 'address', icon: <HomeIcon className="w-8 h-8 text-green" />, color: "bg-green-50" },
+    { id: 'sound', icon: <CheckCircle2 className="w-8 h-8 text-blue-500" />, color: "bg-cyan-50" }
   ];
 
   return (
@@ -30,16 +30,29 @@ const Eligibility = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="card-gradient-border p-6 flex flex-col items-center text-center w-full"
+              className="card-gradient-border p-8 flex flex-col items-center text-center w-full group"
             >
-              <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 transition-transform duration-300 group-hover:scale-110">
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-sm mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${item.color}`}>
                 {item.icon}
               </div>
-              <p className="font-semibold text-gray-800">
+              <p className="font-bold text-lg text-[#111827] leading-tight">
                 {t(`eligibility.items.${item.id}`)}
               </p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <motion.a
+            href="https://voters.eci.gov.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-bold rounded-xl text-white bg-green hover:bg-[#035a2f] hover:shadow-2xl hover:shadow-green/20 transition-all cursor-pointer"
+          >
+            {t('eligibility.check_button')}
+          </motion.a>
         </div>
       </div>
     </section>

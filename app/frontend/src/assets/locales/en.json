@@ -135,7 +135,8 @@
       "citizen": "Indian Citizen",
       "address": "Ordinary Resident of the polling area",
       "sound": "Not disqualified by law"
-    }
+    },
+    "check_button": "Check Eligibility to Vote"
   },
   "awareness": {
     "title": "Election Awareness",
@@ -171,11 +172,11 @@
       },
       "3": {
         "q": "Can I vote without a Voter ID card?",
-        "a": "If your name is on the electoral roll, you can vote using alternate approved photo identity documents like Aadhaar, PAN Card, Driving License, etc."
+        "a": "Yes. If your name is present in the electoral roll (voter list), you can still vote using other approved photo identity documents. These include your Aadhaar Card, PAN Card, Driving License, Passport, or other documents permitted by the Election Commission of India."
       },
       "4": {
-        "q": "What documents are required for registration?",
-        "a": "You need a passport-sized photograph, an age proof (like birth certificate or Aadhaar), and an address proof (like electricity bill or passport)."
+        "q": "What documents are required for voter registration?",
+        "a": "You generally need the following documents (note that requirements may vary slightly depending on the application type and state guidelines):\n\n• A passport-size photograph\n• Proof of age (such as a Birth Certificate, Aadhaar Card, or school certificate)\n• Proof of address (such as an Aadhaar Card, electricity bill, passport, bank passbook, or driving license)"
       },
       "5": {
         "q": "How are votes counted?",

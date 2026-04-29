@@ -50,7 +50,7 @@ const FAQ = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                    <div className="px-6 pb-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 whitespace-pre-line">
                       {t(`faq.questions.${faq}.a`)}
                     </div>
                   </motion.div>
