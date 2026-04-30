@@ -19,7 +19,7 @@ const ElectionProcess = () => {
     <section className="py-16 bg-white sm:py-24" id="process">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
+          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl h1-mobile">
             {t('process.title')}
           </h2>
           <div className="mt-4 w-32 h-1.5 bg-gradient-to-r from-saffron via-gray-200 to-green mx-auto rounded-full"></div>
@@ -29,7 +29,7 @@ const ElectionProcess = () => {
           {/* Vertical Timeline Line */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-200 rounded-full"></div>
           
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {steps.map((step, index) => {
               const isEven = index % 2 === 0;
               return (

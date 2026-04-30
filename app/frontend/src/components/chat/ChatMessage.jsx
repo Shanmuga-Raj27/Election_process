@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 const ChatMessage = ({ message, isAI }) => {
   return (
     <div className={`flex w-full ${isAI ? 'justify-start' : 'justify-end'} mb-4`}>
-      <div className={`flex gap-4 max-w-[85%] md:max-w-2xl p-4 rounded-2xl shadow-sm border ${isAI ? 'bg-white border-gray-100 flex-row' : 'bg-[#EAF5F0] border-[#046A38]/10 flex-row-reverse'}`}>
+      <div className={`flex gap-3 md:gap-4 max-w-[95%] sm:max-w-[85%] md:max-w-2xl p-4 rounded-2xl shadow-sm border ${isAI ? 'bg-white border-gray-100 flex-row' : 'bg-[#EAF5F0] border-[#046A38]/10 flex-row-reverse'}`}>
         <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center shadow-inner ${isAI ? 'bg-[#06038D] text-white' : 'bg-[#FF671F] text-white'}`}>
           {isAI ? <Bot size={18} /> : <User size={18} />}
         </div>

@@ -10,7 +10,7 @@ const RegistrationGuide = () => {
     <section className="py-16 bg-gray-50 sm:py-24" id="registration">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl">
+          <h2 className="text-3xl font-extrabold text-navy sm:text-4xl h1-mobile">
             {t('registration.title')}
           </h2>
           <div className="mt-4 w-32 h-1.5 bg-gradient-to-r from-saffron via-gray-200 to-green mx-auto rounded-full"></div>

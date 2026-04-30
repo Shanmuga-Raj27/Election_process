@@ -42,18 +42,6 @@ const Eligibility = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <motion.a
-            href="https://voters.eci.gov.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-bold rounded-xl text-white bg-green hover:bg-[#035a2f] hover:shadow-2xl hover:shadow-green/20 transition-all cursor-pointer"
-          >
-            {t('eligibility.check_button')}
-          </motion.a>
-        </div>
       </div>
     </section>
   );

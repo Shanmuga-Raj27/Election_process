@@ -24,11 +24,11 @@ const CompareHouses = () => {
           className="card-gradient-border max-w-4xl mx-auto overflow-hidden p-0 bg-white"
         >
           {/* Table Header */}
-          <div className="grid grid-cols-2 border-b-2 border-black relative z-0">
-            <div className="p-8 text-center font-black text-2xl text-saffron border-r-2 border-black bg-gray-50/50">
+          <div className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-black relative z-0">
+            <div className="p-6 md:p-8 text-center font-black text-xl md:text-2xl text-saffron md:border-r-2 border-black bg-gray-50/50">
               Lok Sabha
             </div>
-            <div className="p-8 text-center font-black text-2xl text-navy bg-gray-50/50">
+            <div className="p-6 md:p-8 text-center font-black text-xl md:text-2xl text-navy bg-gray-50/50 border-t-2 md:border-t-0 border-black">
               Rajya Sabha
             </div>
           </div>
@@ -36,23 +36,23 @@ const CompareHouses = () => {
           {/* Table Body */}
           <div className="divide-y-2 divide-black">
             {['title', 'rep', 'method', 'term', 'role'].map((key) => (
-              <div key={key} className="grid grid-cols-2 hover:bg-gray-50 transition-colors">
+              <div key={key} className="grid grid-cols-1 md:grid-cols-2 hover:bg-gray-50 transition-colors">
                 {/* Lok Sabha Cell */}
-                <div className="p-8 border-r-2 border-black bg-white flex flex-col gap-2">
+                <div className="p-6 md:p-8 md:border-r-2 border-black bg-white flex flex-col gap-2">
                   <span className="text-xs font-black uppercase tracking-widest text-saffron">
-                    {t(`compare.labels.${key}`)}
+                    Lok Sabha • {t(`compare.labels.${key}`)}
                   </span>
-                  <div className="text-gray-800 leading-relaxed font-medium">
+                  <div className="text-gray-800 leading-relaxed font-medium p-mobile">
                     {t(`compare.loksabha.${key}`)}
                   </div>
                 </div>
 
                 {/* Rajya Sabha Cell */}
-                <div className="p-8 bg-white flex flex-col gap-2">
+                <div className="p-6 md:p-8 bg-white flex flex-col gap-2 border-t md:border-t-0 border-black">
                   <span className="text-xs font-black uppercase tracking-widest text-navy">
-                    {t(`compare.labels.${key}`)}
+                    Rajya Sabha • {t(`compare.labels.${key}`)}
                   </span>
-                  <div className="text-gray-800 leading-relaxed font-medium">
+                  <div className="text-gray-800 leading-relaxed font-medium p-mobile">
                     {t(`compare.rajyasabha.${key}`)}
                   </div>
                 </div>

@@ -4,7 +4,8 @@
     "subtitle": "Understand voting, elections, and democracy in a simple interactive way.",
     "ctaStart": "Start Learning",
     "ctaRegister": "Register to Vote",
-    "ctaAsk": "Ask AI Assistant"
+    "ctaAsk": "Ask AI Assistant",
+    "ctaEVM": "How to Vote using EVM"
   },
   "nav": {
     "home": "Home",
@@ -74,11 +75,11 @@
     "title": "Types of Elections",
     "cards": {
       "loksabha": {
-        "title": "Lok Sabha Election",
+        "title": "Lok Sabha",
         "desc": "General elections to elect Members of Parliament (MPs) to the lower house, who in turn select the Prime Minister."
       },
       "rajyasabha": {
-        "title": "Rajya Sabha Election",
+        "title": "Rajya Sabha",
         "desc": "Indirect elections where Members of Legislative Assemblies (MLAs) elect representatives to the upper house."
       },
       "assembly": {
@@ -196,5 +197,33 @@
     "form6": "Form 6 Registration",
     "help": "ECI Help Resources",
     "github": "GitHub Repository"
+  },
+  "evm": {
+    "title": "How to Vote Using EVM",
+    "video_title": "Official EVM Guide",
+    "video_desc": "Watch this official educational video to understand how voting is done safely and securely using an Electronic Voting Machine (EVM).",
+    "watch_btn": "Watch Full Guide",
+    "visualizer": {
+      "title": "Understanding the EVM",
+      "ballot": "Ballot Unit",
+      "ballot_desc": "Used by voters to cast votes.",
+      "control": "Control Unit",
+      "control_desc": "Operated by polling officers.",
+      "vvpat": "VVPAT",
+      "vvpat_desc": "Displays vote confirmation briefly.",
+      "buttons": "Candidate Buttons",
+      "buttons_desc": "Used to select candidates."
+    },
+    "steps": {
+      "title": "How to Vote in 4 Simple Steps",
+      "s1_title": "1. Identity Verification",
+      "s1_desc": "Officer checks voter identity in the voter list to grant permission.",
+      "s2_title": "2. Go to Voting Compartment",
+      "s2_desc": "Voter enters private area; Ballot Unit displays candidates. Voting is secret.",
+      "s3_title": "3. Press Candidate Button",
+      "s3_desc": "Voter presses the button beside their choice; a beep confirms, button glows briefly.",
+      "s4_title": "4. Verify VVPAT Slip",
+      "s4_desc": "Screen briefly displays selected candidate confirming the vote, then slip disappears."
+    }
   }
 }

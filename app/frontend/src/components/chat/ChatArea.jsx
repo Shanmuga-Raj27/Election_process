@@ -39,9 +39,9 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
 
   return (
     <main className="flex-1 flex flex-col h-full bg-white relative">
-      <header className="h-14 flex items-center justify-between px-6 border-b border-gray-100 shrink-0 sticky top-0 bg-white/80 backdrop-blur-md z-10">
-        <h1 className="text-xl font-semibold text-gray-800">
-          NEA - AI <span className="text-sm font-normal text-gray-500 ml-2">(National Election Assistant)</span>
+      <header className="h-16 flex items-center justify-between px-4 md:px-6 border-b border-gray-100 shrink-0 sticky top-0 bg-white/80 backdrop-blur-md z-10">
+        <h1 className="text-lg md:text-xl font-bold text-[#06038D] flex items-baseline">
+          NEA - AI <span className="text-[10px] md:text-sm font-normal text-gray-500 ml-2 hidden xs:inline">(National Election Assistant)</span>
         </h1>
         <Link
           to="/"

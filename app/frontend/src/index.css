@@ -62,4 +62,20 @@
       0 0 15px rgba(255, 103, 31, 0.25),
       0 0 15px rgba(4, 106, 56, 0.25);
   }
+
+  /* Mobile First Responsive Utilities */
+  @media (max-width: 640px) {
+    .h1-mobile {
+      @apply text-3xl font-black leading-tight tracking-tighter;
+    }
+    .p-mobile {
+      @apply text-base leading-relaxed;
+    }
+    .section-spacing {
+      @apply py-10 px-4;
+    }
+    .touch-target {
+      @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    }
+  }
 }

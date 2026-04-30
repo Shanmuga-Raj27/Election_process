@@ -27,10 +27,10 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="sm:text-center lg:text-left py-12 lg:py-24"
           >
-            <h1 className="text-4xl tracking-tight font-extrabold text-navy sm:text-5xl md:text-6xl lg:text-7xl mb-6">
+            <h1 className="text-4xl tracking-tight font-extrabold text-navy sm:text-5xl md:text-6xl lg:text-7xl mb-6 h1-mobile">
               <span className="block">{t('hero.title')}</span>
             </h1>
-            <p className="mt-3 text-lg text-gray-700 sm:mt-5 sm:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-medium border-l-4 border-saffron pl-4">
+            <p className="mt-3 text-lg text-gray-700 sm:mt-5 sm:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 md:mb-10 leading-relaxed font-medium border-l-4 border-saffron pl-4 p-mobile">
               {t('hero.subtitle')}
             </p>
 
@@ -52,13 +52,21 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="mt-6 sm:mt-8 flex justify-center lg:justify-start">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Link
                 to="/chat"
                 className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-semibold rounded-xl text-saffron bg-orange-50 hover:bg-orange-100 hover:shadow-md transition-all w-full sm:w-auto"
               >
                 <BotMessageSquare className="mr-2 w-5 h-5" />
                 {t('hero.ctaAsk')}
+              </Link>
+              
+              <Link
+                to="/evm"
+                className="inline-flex items-center justify-center px-8 py-3.5 border-2 border-green-600 text-base font-semibold rounded-xl text-green-700 bg-green-50 hover:bg-green-600 hover:text-white hover:shadow-md transition-all w-full sm:w-auto"
+              >
+                <CheckCircle2 className="mr-2 w-5 h-5" />
+                {t('hero.ctaEVM', 'How to Vote using EVM')}
               </Link>
             </div>
           </motion.div>
