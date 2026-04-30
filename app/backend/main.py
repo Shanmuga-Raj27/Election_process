@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel, ConfigDict
 from typing import List
 
-from database import init_db, get_db, ChatMessage
-from ai_service import ai_service
+from .database import init_db, get_db, ChatMessage
+from .ai_service import ai_service
 
 # Initialize DB
 @asynccontextmanager
@@ -82,6 +82,11 @@ def get_history(session_id: str, db: Session = Depends(get_db)):
         })
     return results
 
+@app.get("/sessions", response_model=List[str])
+def get_sessions(db: Session = Depends(get_db)):
+    sessions = db.query(ChatMessage.session_id).distinct().all()
+    return [s[0] for s in sessions if s[0]]
+
 @app.post("/chat/stream")
 async def chat_stream(request: ChatRequest, db: Session = Depends(get_db)):
     # 1. Get History
@@ -99,7 +104,7 @@ async def chat_stream(request: ChatRequest, db: Session = Depends(get_db)):
                 yield chunk
             
             # 3. Save to DB (Synchronously after stream for simplicity/reliability in this test phase)
-            from database import SessionLocal
+            from .database import SessionLocal
             with SessionLocal() as bg_db:
                 new_message = ChatMessage(
                     session_id=request.session_id,

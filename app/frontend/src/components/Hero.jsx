@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, BotMessageSquare, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import flagImg from '../assets/images/flag.png';
 
 const Hero = () => {
@@ -52,13 +53,13 @@ const Hero = () => {
             </div>
 
             <div className="mt-6 sm:mt-8 flex justify-center lg:justify-start">
-              <button
-                onClick={() => { }} // AI Assistant
+              <Link
+                to="/chat"
                 className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-semibold rounded-xl text-saffron bg-orange-50 hover:bg-orange-100 hover:shadow-md transition-all w-full sm:w-auto"
               >
                 <BotMessageSquare className="mr-2 w-5 h-5" />
                 {t('hero.ctaAsk')}
-              </button>
+              </Link>
             </div>
           </motion.div>
 

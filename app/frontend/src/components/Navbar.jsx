@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Languages, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
@@ -44,10 +45,10 @@ const Navbar = () => {
               </a>
             ))}
             
-            <button className="flex items-center gap-2 text-navy font-medium hover:text-blue-600 transition-colors text-sm lg:text-base">
+            <Link to="/chat" className="flex items-center gap-2 text-navy font-medium hover:text-blue-600 transition-colors text-sm lg:text-base">
               <Bot className="w-5 h-5" />
               <span>{t('nav.ai')}</span>
-            </button>
+            </Link>
 
             <div className="flex items-center gap-2 border-l pl-4 lg:pl-6 border-gray-200">
               <Languages className="w-5 h-5 text-gray-500" />
@@ -95,14 +96,14 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <a
-                href="#ai"
+              <Link
+                to="/chat"
                 className="px-3 py-2 text-base font-medium text-blue-600 hover:bg-blue-50 rounded-lg flex items-center gap-2"
                 onClick={() => setIsOpen(false)}
               >
                 <Bot className="w-5 h-5" />
                 {t('nav.ai')}
-              </a>
+              </Link>
               <div className="px-3 py-2 mt-4 border-t border-gray-100 pt-4 flex items-center gap-2">
                 <Languages className="w-5 h-5 text-gray-500" />
                 <select

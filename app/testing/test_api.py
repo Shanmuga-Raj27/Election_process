@@ -5,11 +5,9 @@ from sqlalchemy.orm import sessionmaker
 import sys
 import os
 
-# Add backend to path so we can import main
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend")))
-
-from main import app
-from database import Base, get_db
+# Absolute imports using the new package structure
+from app.backend.main import app
+from app.backend.database import Base, get_db
 
 # Setup Test Database
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test_election.db"
@@ -55,3 +53,20 @@ def test_history_endpoint():
     assert response.status_code == 200
     assert len(response.json()) > 0
     assert response.json()[0]["user_message"] == "Hello"
+
+def test_sessions_endpoint():
+    # Insert messages in different sessions
+    client.post("/chat", json={"session_id": "session-1", "message": "Hello 1"})
+    client.post("/chat", json={"session_id": "session-2", "message": "Hello 2"})
+    
+    response = client.get("/sessions")
+    assert response.status_code == 200
+    sessions = response.json()
+    assert len(sessions) >= 2
+    assert "session-1" in sessions
+    assert "session-2" in sessions
+
+def test_chat_error_handling():
+    # Test missing payload
+    response = client.post("/chat", json={})
+    assert response.status_code == 422 # Validation Error
