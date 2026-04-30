@@ -1,17 +1,25 @@
+import os
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException
+
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List
 
 from database import init_db, get_db, ChatMessage
 from ai_service import ai_service
 
 # Initialize DB
-init_db()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Only initialize the real database if we aren't running tests
+    if not os.getenv("TESTING"):
+        init_db()
+    yield
 
-app = FastAPI(title="Election Assistant AI")
+app = FastAPI(title="Election Assistant AI", lifespan=lifespan)
 
 # Add CORS for frontend integration
 app.add_middleware(
@@ -35,8 +43,7 @@ class HistoryItem(BaseModel):
     ai_response: str
     timestamp: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 @app.get("/")
 def read_root():

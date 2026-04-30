@@ -1,8 +1,7 @@
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,7 +20,7 @@ class ChatMessage(Base):
     session_id = Column(String, index=True)
     user_message = Column(Text)
     ai_response = Column(Text)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 def init_db():
     Base.metadata.create_all(bind=engine)
