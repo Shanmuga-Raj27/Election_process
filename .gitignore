@@ -2,15 +2,24 @@
 app/backend/.env
 app/backend/*.db
 app/backend/*.sqlite3
+app/backend/serviceAccountKey.json
 
 # Frontend Secrets
 app/frontend/.env
 app/frontend/.env.local
+app/frontend/.env.development.local
+app/frontend/.env.test.local
+app/frontend/.env.production.local
 
 # Dependency folders
 node_modules/
 app/backend/.venv/
 app/backend/__pycache__/
+
+# Build artifacts
+dist/
+build/
+*.pyc
 
 # System files
 .DS_Store

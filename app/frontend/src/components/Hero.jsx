@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRight, BotMessageSquare, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import flagImg from '../assets/images/flag.png';
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -18,23 +17,22 @@ const Hero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-          {/* Left Text Content */}
+        <div className="flex justify-center items-center py-12 lg:py-24">
+          {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="sm:text-center lg:text-left py-12 lg:py-24"
+            className="text-center max-w-4xl"
           >
             <h1 className="text-4xl tracking-tight font-extrabold text-navy sm:text-5xl md:text-6xl lg:text-7xl mb-6 h1-mobile">
               <span className="block">{t('hero.title')}</span>
             </h1>
-            <p className="mt-3 text-lg text-gray-700 sm:mt-5 sm:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 md:mb-10 leading-relaxed font-medium border-l-4 border-saffron pl-4 p-mobile">
+            <p className="mt-3 text-lg text-gray-700 sm:mt-5 sm:text-xl mb-8 md:mb-10 leading-relaxed font-medium border-l-4 border-saffron pl-4 p-mobile text-left sm:text-center mx-auto max-w-2xl">
               {t('hero.subtitle')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#process"
                 className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-semibold rounded-xl text-white bg-saffron hover:bg-[#e55a15] hover:shadow-lg hover:-translate-y-0.5 transition-all w-full sm:w-auto"
@@ -52,7 +50,7 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 to="/chat"
                 className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-semibold rounded-xl text-saffron bg-orange-50 hover:bg-orange-100 hover:shadow-md transition-all w-full sm:w-auto"
@@ -70,28 +68,6 @@ const Hero = () => {
               </Link>
             </div>
           </motion.div>
-
-          {/* Right Visual Content - New Image Section */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center items-center relative"
-          >
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="relative w-full max-w-lg aspect-square lg:aspect-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
-            >
-              <img
-                src={flagImg}
-                alt="Indian Flag"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            </motion.div>
-          </motion.div>
-
-
         </div>
       </div>
     </div>

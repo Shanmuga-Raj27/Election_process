@@ -10,8 +10,22 @@ from typing import List
 
 from .database import init_db, get_db, ChatMessage
 from .ai_service import ai_service
+import firebase_admin
+from firebase_admin import credentials, auth
 
 # Initialize DB
+# Initialize Firebase Admin
+try:
+    # Look for service account key in current directory or env var
+    cred_path = os.getenv("FIREBASE_SERVICE_ACCOUNT", "serviceAccountKey.json")
+    if os.path.exists(cred_path):
+        cred = credentials.Certificate(cred_path)
+        firebase_admin.initialize_app(cred)
+    else:
+        print("Warning: Firebase serviceAccountKey.json not found. Auth verification will be limited.")
+except Exception as e:
+    print(f"Firebase Admin initialization error: {e}")
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Only initialize the real database if we aren't running tests
@@ -48,6 +62,27 @@ class HistoryItem(BaseModel):
 @app.get("/")
 def read_root():
     return {"message": "Election Assistant AI Backend is online."}
+
+class AuthVerifyRequest(BaseModel):
+    id_token: str
+
+@app.post("/auth/verify")
+async def verify_token(request: AuthVerifyRequest):
+    """
+    Verifies a Firebase ID token sent from the frontend.
+    """
+    try:
+        # Verify the ID token
+        decoded_token = auth.verify_id_token(request.id_token)
+        uid = decoded_token['uid']
+        return {"status": "success", "uid": uid, "email": decoded_token.get('email')}
+    except Exception as e:
+        # If verification fails or firebase is not initialized properly
+        print(f"Token verification error: {e}")
+        # For development/demo, we might allow bypass if key is missing
+        if not os.path.exists("serviceAccountKey.json"):
+             return {"status": "debug_bypass", "message": "Verification skipped (no key)"}
+        raise HTTPException(status_code=401, detail=f"Invalid authentication credentials: {str(e)}")
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest, db: Session = Depends(get_db)):

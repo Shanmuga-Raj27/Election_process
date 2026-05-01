@@ -9,3 +9,4 @@ pytest
 pytest-mock
 httpx
 requests
+firebase-admin

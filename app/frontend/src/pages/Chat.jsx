@@ -69,6 +69,7 @@ const Chat = () => {
         setSessions(prev => [sessionId, ...prev]);
       }
     } catch (error) {
+      console.error("Chat Error:", error);
       setMessages(prev => [...prev, { text: "Sorry, I encountered an error. Please try again.", isAI: true }]);
     } finally {
       setIsTyping(false);

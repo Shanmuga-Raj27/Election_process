@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { User, Bot } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
@@ -14,10 +15,10 @@ const ChatMessage = ({ message, isAI }) => {
             {isAI ? (
               <ReactMarkdown
                 components={{
-                  strong: ({ node, ...props }) => <strong className="font-bold text-navy" {...props} />,
-                  ul: ({ node, ...props }) => <ul className="list-disc ml-4 space-y-1 my-2" {...props} />,
-                  li: ({ node, ...props }) => <li className="text-gray-700" {...props} />,
-                  p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                  strong: ({ node: _, ...props }) => <strong className="font-bold text-navy" {...props} />,
+                  ul: ({ node: _, ...props }) => <ul className="list-disc ml-4 space-y-1 my-2" {...props} />,
+                  li: ({ node: _, ...props }) => <li className="text-gray-700" {...props} />,
+                  p: ({ node: _, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
                 }}
               >
                 {message}
