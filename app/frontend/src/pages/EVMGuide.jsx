@@ -31,7 +31,7 @@ const EVMGuide = () => {
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-saffron via-white to-green flex items-center justify-center shadow-sm border border-gray-100">
             <span className="text-navy font-extrabold text-xl">IN</span>
           </div>
-          <span className="font-extrabold text-2xl text-navy tracking-tight hidden sm:block">Election Edu</span>
+          <span className="font-extrabold text-2xl text-navy tracking-tight hidden sm:block">NEIC</span>
         </div>
 
         <div className="flex items-center gap-4">

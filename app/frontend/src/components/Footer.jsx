@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                 <span className="text-navy font-bold text-lg">IN</span>
               </div>
-              <span className="font-extrabold text-white text-2xl tracking-tight">Election Edu</span>
+              <span className="font-extrabold text-white text-2xl tracking-tight">NEIC</span>
             </div>
             <p className="text-gray-100 leading-relaxed mb-6 max-w-md font-medium">
               {t('footer.about')} - {t('footer.disclaimer')}
@@ -75,7 +75,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center text-gray-300 text-sm font-medium">
-          <div>&copy; {new Date().getFullYear()} Election Edu. All rights reserved.</div>
+          <div>&copy; {new Date().getFullYear()} NEIC. All rights reserved.</div>
           <div className="mt-4 md:mt-0">
             <a href="#" className="hover:text-white underline">{t('footer.privacy')}</a>
           </div>

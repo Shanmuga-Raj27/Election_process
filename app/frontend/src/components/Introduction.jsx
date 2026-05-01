@@ -13,7 +13,7 @@ const Introduction = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto card-gradient-border p-10"
+          className="text-center max-w-3xl mx-auto card-gradient-border p-6 sm:p-10"
         >
           <div className="inline-flex items-center justify-center p-3 bg-blue-50 rounded-full mb-6">
             <Info className="w-8 h-8 text-navy" />

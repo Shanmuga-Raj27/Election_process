@@ -1,10 +1,14 @@
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
 export const chatApi = {
   // Get all chat sessions for the sidebar
-  getSessions: async () => {
+  getSessions: async (token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/sessions`);
+      const response = await fetch(`${API_BASE_URL}/sessions`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (!response.ok) throw new Error('Failed to fetch sessions');
       return await response.json();
     } catch (error) {
@@ -14,9 +18,13 @@ export const chatApi = {
   },
 
   // Get chat history for a specific session
-  getHistory: async (sessionId) => {
+  getHistory: async (sessionId, token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/history/${sessionId}`);
+      const response = await fetch(`${API_BASE_URL}/history/${sessionId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (!response.ok) throw new Error('Failed to fetch history');
       return await response.json();
     } catch (error) {
@@ -26,12 +34,13 @@ export const chatApi = {
   },
 
   // Send a new message to the chat
-  sendMessage: async (sessionId, message) => {
+  sendMessage: async (sessionId, message, token) => {
     try {
       const response = await fetch(`${API_BASE_URL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ session_id: sessionId, message }),
       });

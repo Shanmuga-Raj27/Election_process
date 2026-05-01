@@ -63,19 +63,43 @@
       0 0 15px rgba(4, 106, 56, 0.25);
   }
 
-  /* Mobile First Responsive Utilities */
-  @media (max-width: 640px) {
-    .h1-mobile {
-      @apply text-3xl font-black leading-tight tracking-tighter;
+  /* Fluid Typography & Mobile Responsive Utilities */
+  :root {
+    --h1-fluid: clamp(2rem, 5vw + 1rem, 4.5rem);
+    --h2-fluid: clamp(1.5rem, 4vw + 1rem, 3rem);
+    --p-fluid: clamp(0.9rem, 0.5vw + 0.8rem, 1.125rem);
+  }
+
+  .h1-mobile {
+    font-size: var(--h1-fluid);
+    @apply font-black leading-[1.1] tracking-tighter;
+  }
+
+  .h2-mobile {
+    font-size: var(--h2-fluid);
+    @apply font-black leading-tight tracking-tight;
+  }
+
+  .p-mobile {
+    font-size: var(--p-fluid);
+    @apply leading-relaxed;
+  }
+
+  .section-spacing {
+    @apply py-12 md:py-24 px-4 md:px-8;
+  }
+
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-stack {
+      @apply flex-col gap-6;
     }
-    .p-mobile {
-      @apply text-base leading-relaxed;
-    }
-    .section-spacing {
-      @apply py-10 px-4;
-    }
-    .touch-target {
-      @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    
+    .mobile-center {
+      @apply text-center items-center;
     }
   }
 }

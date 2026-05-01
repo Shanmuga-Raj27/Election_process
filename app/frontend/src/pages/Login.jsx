@@ -26,8 +26,8 @@ const Login = () => {
   const syncWithBackend = async (user) => {
     try {
       const token = await user.getIdToken();
-      // Call Fast API backend to verify token and sync session
-      await fetch('http://127.0.0.1:8000/auth/verify', {
+      const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+      await fetch(`${API_BASE_URL}/auth/verify`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

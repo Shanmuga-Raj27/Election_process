@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Loader2, Home } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Send, Loader2, Home, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import ChatMessage from './ChatMessage';
 
 const ChatArea = ({ messages, isTyping, onSendMessage }) => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -15,12 +16,6 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping]);
-
-  useEffect(() => {
-    if (!isTyping) {
-      inputRef.current?.focus();
-    }
-  }, [isTyping]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,76 +33,116 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
   };
 
   return (
-    <main className="flex-1 flex flex-col h-full bg-white relative">
-      <header className="h-16 flex items-center justify-between px-4 md:px-6 border-b border-gray-100 shrink-0 sticky top-0 bg-white/80 backdrop-blur-md z-10">
-        <h1 className="text-lg md:text-xl font-bold text-[#06038D] flex items-baseline">
-          NEA - AI <span className="text-[10px] md:text-sm font-normal text-gray-500 ml-2 hidden xs:inline">(National Election Assistant)</span>
-        </h1>
-        <Link
-          to="/"
-          className="flex items-center gap-2 text-gray-600 hover:text-navy transition-colors text-sm font-medium"
-          aria-label="Back to Homepage"
-        >
-          <Home size={18} />
-          <span className="hidden sm:inline">Back to Home</span>
-        </Link>
+    <main className="flex-1 flex flex-col h-full bg-white relative overflow-hidden">
+      {/* Header - Desktop */}
+      <header className="hidden lg:flex h-20 items-center justify-between px-8 border-b border-gray-100 shrink-0 sticky top-0 bg-white/90 backdrop-blur-md z-10">
+        <div className="flex items-center gap-4">
+          <div>
+            <h1 className="text-xl font-black text-navy tracking-tight">
+              NEA - AI
+            </h1>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">
+              National Election Assistant
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 px-5 py-2.5 bg-saffron text-white rounded-full font-bold shadow-lg shadow-saffron/20 hover:bg-[#e55a15] hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-95"
+          >
+            <Home size={18} />
+            <span>Homepage</span>
+          </button>
+          <div className="px-3 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-full border border-green-100">
+            SECURE SESSION
+          </div>
+        </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+      {/* Chat Messages */}
+      <div className="flex-1 overflow-y-auto p-4 lg:p-10 space-y-8 custom-scrollbar bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px]">
         {messages.length === 0 && !isTyping ? (
-          <div className="h-full flex flex-col items-center justify-center text-gray-400 space-y-4">
-            <div className="w-16 h-16 bg-[#EAF5F0] rounded-full flex items-center justify-center text-[#046A38]">
-              <span className="text-3xl font-bold">NEA</span>
+          <div className="h-full flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-4">
+            <div className="w-20 h-20 bg-navy rounded-3xl flex items-center justify-center text-white mb-8 shadow-xl rotate-3">
+              <span className="text-3xl font-black">NEA</span>
             </div>
-            <p className="text-lg">How can I help you with the elections today?</p>
+            <h2 className="text-3xl lg:text-4xl font-black text-navy mb-4 h2-mobile">
+              Hello, I am NEA - AI.
+            </h2>
+            <p className="text-gray-500 font-medium text-lg mb-10 p-mobile">
+              Your National Election Assistant. I'm here to help you understand the election process in India. How can I assist you today?
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+              {[
+                "How do I register to vote?",
+                "What documents are required?",
+                "How to use an EVM machine?",
+                "Check eligibility criteria"
+              ].map((suggestion) => (
+                <button
+                  key={suggestion}
+                  onClick={() => onSendMessage(suggestion)}
+                  className="p-5 text-left text-sm font-bold text-navy bg-white hover:bg-navy hover:text-white rounded-2xl transition-all border-2 border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1"
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
           </div>
         ) : (
-          messages.map((msg, idx) => (
-            <ChatMessage key={idx} message={msg.text} isAI={msg.isAI} />
-          ))
-        )}
-
-        {isTyping && (
-          <div className="flex gap-4 w-full max-w-3xl mx-auto p-4 bg-gray-50 rounded-2xl">
-            <div className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-[#06038D] text-white">
-              <Loader2 size={18} className="animate-spin" />
-            </div>
-            <div className="flex-1 flex items-center">
-              <p className="text-sm text-gray-500 italic">NEA - AI is thinking...</p>
-            </div>
+          <div className="max-w-4xl mx-auto w-full space-y-10 pb-10">
+            {messages.map((msg, idx) => (
+              <ChatMessage key={idx} message={msg.text} isAI={msg.isAI} />
+            ))}
+            
+            {isTyping && (
+              <div className="flex gap-4 w-full animate-pulse">
+                <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-navy text-white shadow-md">
+                  <Loader2 size={20} className="animate-spin" />
+                </div>
+                <div className="bg-white p-5 rounded-3xl rounded-tl-none border-2 border-gray-100 shadow-sm max-w-[85%]">
+                  <div className="flex gap-1.5">
+                    <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                    <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-4 md:p-6 shrink-0 bg-gradient-to-t from-white via-white to-transparent pt-10">
-        <div className="max-w-3xl mx-auto relative">
+      {/* Input Area */}
+      <div className="p-4 lg:p-8 shrink-0 bg-white border-t border-gray-50 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
+        <div className="max-w-4xl mx-auto relative">
           <form
             onSubmit={handleSubmit}
-            className="flex items-end gap-2 bg-gray-100 rounded-3xl p-2 border border-transparent focus-within:border-[#FF671F] focus-within:ring-2 focus-within:ring-[#FF671F]/20 transition-all card-gradient-border"
+            className="flex items-end gap-3 bg-gray-50 rounded-[1.5rem] lg:rounded-[2.5rem] p-2 lg:p-3 border-2 border-transparent focus-within:border-saffron focus-within:bg-white focus-within:shadow-2xl focus-within:shadow-saffron/10 transition-all"
           >
             <textarea
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask anything about the elections..."
-              className="flex-1 max-h-32 min-h-[44px] bg-transparent resize-none border-0 focus:ring-0 p-3 outline-none text-gray-800"
+              placeholder="Ask NEA anything about the elections..."
+              className="flex-1 max-h-40 min-h-[48px] lg:min-h-[60px] bg-transparent resize-none border-0 focus:ring-0 px-4 py-3 lg:py-4 outline-none text-gray-800 font-medium text-base"
               rows={1}
               disabled={isTyping}
-              aria-label="Chat input"
             />
             <button
               type="submit"
               disabled={!input.trim() || isTyping}
-              className="shrink-0 w-11 h-11 rounded-full bg-[#046A38] text-white flex items-center justify-center hover:bg-[#03552c] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              aria-label="Send message"
+              className="shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-navy text-white flex items-center justify-center hover:bg-saffron disabled:opacity-20 disabled:hover:bg-navy transition-all shadow-lg active:scale-95"
             >
-              <Send size={18} className="ml-1" />
+              <Send size={24} />
             </button>
           </form>
-          <p className="text-xs text-center text-gray-400 mt-3">
-            NEA - AI can make mistakes. Consider verifying important election information.
+          <p className="text-[10px] text-center text-gray-400 mt-4 font-bold uppercase tracking-[0.2em]">
+            Official ECI Information Companion
           </p>
         </div>
       </div>

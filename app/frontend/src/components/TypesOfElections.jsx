@@ -30,7 +30,7 @@ const TypesOfElections = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="card-gradient-border p-8 flex gap-6 w-full"
+              className="card-gradient-border p-6 sm:p-8 flex flex-col sm:flex-row gap-6 w-full items-center sm:items-start text-center sm:text-left"
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-gray-50 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">

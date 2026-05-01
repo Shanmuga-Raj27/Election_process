@@ -21,3 +21,6 @@ venv/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Sensitive credentials
+serviceAccountKey.json
