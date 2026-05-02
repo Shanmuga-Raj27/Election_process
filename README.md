@@ -1,51 +1,71 @@
-# 🗳️ NEIC - National Election Information Companion
+# NEIC: National Election Information Companion
 
-**NEIC** (National Election Information Companion) is a modern, AI-powered educational platform designed to empower Indian citizens with accurate, non-partisan information about the democratic process.
+**Live Link:** [🔗 Live Link](https://neic-project.netlify.app/)
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://neic-project.netlify.app/)
-[![Backend Status](https://img.shields.io/badge/Backend-Online-blue?style=for-the-badge)](https://election-process-jxt3.onrender.com/)
+> [!NOTE]  
+> **A Google Virtual PromptWar Innovation:** This project is strictly for educational and civic empowerment purposes, engineered entirely through **Google Antigravity AI-assisted coding**, advanced prompt engineering, and state-of-the-art LLM optimization techniques.
 
 ---
 
-## 🎯 Project Mission
-To simplify the complex Indian electoral process into a beginner-friendly, multi-lingual experience. From registration guides to interactive AI chat, NEIC is your digital companion for democracy.
+## 🚀 Vision & Overview
 
-## 🛠️ Technical Stack
-- **Frontend**: React (Vite), Tailwind CSS, Framer Motion, Lucide Icons
-- **Backend**: FastAPI (Python), SQLAlchemy, SQLite (Scalable to Firestore)
-- **AI Core**: Google Gemini 2.5 Flash
-- **Auth**: Firebase Authentication (Google & Email/Password)
-- **Internationalization**: i18next (English, Hindi, Tamil)
+The **National Election Information Companion (NEIC)** is a next-generation, AI-driven civic technology platform designed to democratize electoral knowledge for Indian citizens. By bridging the information gap through advanced Natural Language Processing (NLP) and context-aware interactions, NEIC demystifies the election process, the mechanics of Electronic Voting Machines (EVMs), and fundamental democratic rights.
 
-## 🏗️ Project Architecture
+At its core operates **NEA-AI (National Election Assistant AI)**—a highly optimized, hallucination-resistant, non-partisan AI agent. Powered by sophisticated prompt architectures, NEA-AI delivers accurate, multi-lingual (English, Hindi, Tamil) guidance, transforming complex civic data into accessible, interactive conversations.
+
+---
+
+## 🧠 Cutting-Edge Tech Stack
+
+Built with a robust, highly scalable full-stack architecture focusing on seamless AI integration, rapid asynchronous processing, and an immersive user experience.
+
+### Artificial Intelligence & Prompt Engineering
+![Google Gemini](https://img.shields.io/badge/Google_Gemini_2.5_Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white) 
+* **Core Model:** Google Generative AI (Gemini 2.5 Flash)
+* **Optimization:** Context-bound prompt isolation, multi-lingual token optimization, and zero-shot civic data retrieval.
+
+### Frontend Interface (Client-Side)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Framer](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
+* **Architecture:** React (Vite) SPA with **Web Speech API** for voice interactions.
+* **Optimization**: WebP hardware-accelerated image delivery and modular route splitting.
+* **Localization:** `i18next` for seamless dynamic language switching.
+
+### Backend Services (Server-Side)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi) ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+* **Framework:** FastAPI for high-performance, asynchronous RESTful API endpoints.
+* **Data Layer:** SQLAlchemy ORM with **Indexed Queries** for high-speed session retrieval.
+* **Security:** Firebase Admin SDK for hardened token verification.
+
+---
+
+## 📁 Optimized System Architecture
+
 ```text
 Election Assistant/
 ├── app/
-│   ├── backend/            # FastAPI Python Backend
-│   │   ├── core/           # Prompt templates & logic
+│   ├── backend/            # FastAPI Python Backend (PEP8 Standard)
+│   │   ├── prompts/        # Externalized Prompt Manager (v1.txt)
 │   │   ├── ai_service.py   # Gemini AI orchestration
-│   │   ├── database.py     # SQLAlchemy models & Session
+│   │   ├── database.py     # SQLAlchemy models & Session (Indexed)
 │   │   └── main.py         # API endpoints & Firebase Auth
 │   └── frontend/           # React Web Application
 │       ├── src/
-│       │   ├── components/ # Atomic & Feature components
-│       │   ├── pages/      # Route-level views
-│       │   └── assets/     # Optimized .webp images & i18n
-├── prompt_base/            # Engineered Gemini Prompts
+│       │   ├── components/ # Atomic components grouped by domain
+│       │   │   ├── chat/   # Messaging UI
+│       │   │   ├── common/ # Navbar, Footer
+│       │   │   └── home/   # Landing page features
+│       │   ├── pages/      # Route-level views (Chat, EVMGuide, Login)
+│       │   └── assets/     # Optimized .webp images & i18n locales
+├── prompt_base/            # Engineered Gemini Prompt Repository
 ├── render.yaml             # Infrastructure as Code (Backend)
 └── netlify.toml            # Security & Header Config (Frontend)
 ```
 
-## 🚀 Key Features
-- **Conversational AI**: Multi-lingual assistant with 1-3-1 response formatting.
-- **Voice Integration**: Hands-free interaction via Google Web Speech API.
-- **EVM Guide**: Visual, step-by-step breakdown of the voting process.
-- **High Efficiency**: WebP image optimization and database indexing for <1s load times.
-
-## 👨‍💻 Developer
-**Shanmugaraj R**
-- [LinkedIn](https://www.linkedin.com/in/shanmugaraj-r-644782290/) | [GitHub](https://github.com/Shanmuga-Raj27)
+## 💼 Social & Contact
+- **LinkedIn Post:** [🔗 View on LinkedIn](https://www.linkedin.com/posts/shanmugaraj27_buildwithai-promptwarsvirtual-ai-activity-7456341060399570944-2pgt)
+- **Developer:** **Shanmugaraj R**
+- [LinkedIn Profile](https://www.linkedin.com/in/shanmugaraj27) | [GitHub Profile](https://github.com/Shanmuga-Raj27)
 
 ---
-> [!NOTE]
-> This project is for educational purposes and was developed using **Google Antigravity AI-assisted coding**.
+> [!IMPORTANT]
+> This project is for educational purposes only and was developed using **Google Antigravity AI-assisted coding**.
