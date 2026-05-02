@@ -1,6 +1,6 @@
 # NEIC: National Election Information Companion
 
-**Live Link:**[Live Deployment](https://neic-project.netlify.app/)
+**Live Link:** [🔗 Live Link](https://neic-project.netlify.app/)
 
 > [!NOTE]  
 > **A Google Virtual PromptWar Innovation:** This project is strictly for educational and civic empowerment purposes, engineered entirely through **Google Antigravity AI-assisted coding**, advanced prompt engineering, and state-of-the-art LLM optimization techniques.
@@ -79,14 +79,14 @@ Election Assistant/
 
 ## 💼 Social & Contact
 - **Live Platform:** *(https://neic-project.netlify.app/)*
-- **LinkedIn Post:** 
+- **LinkedIn Post:** *(https://www.linkedin.com/posts/shanmugaraj27_buildwithai-promptwarsvirtual-ai-activity-7456341060399570944-2pgt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFP0UbUB50NOIOxnb-R37ovQLTiUSEECljY)*
 - **Technical Blog:** *()*
 - **Instagram Showcase:** *()*
 
 ### 💻 Developer
 **Shanmugaraj R**
-- LinkedIn: https://www.linkedin.com
-- GitHub: https://github.com/Shanmuga-Raj27
+- LinkedIn: *(https://www.linkedin.com/in/shanmugaraj27)*
+- GitHub: *(https://github.com/Shanmuga-Raj27)*
 
 > **Note:** This project is for educational purposes only and was fully built using **Google Antigravity AI‑assisted coding**.
 
