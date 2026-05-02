@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Nation Election Information Companion",
+    "title": "National Election Information Companion",
     "subtitle": "Understand voting, elections, and democracy in a simple interactive way.",
     "ctaStart": "Start Learning",
     "ctaRegister": "Register to Vote",
@@ -224,6 +224,8 @@
       "s3_desc": "Voter presses the button beside their choice; a beep confirms, button glows briefly.",
       "s4_title": "4. Verify VVPAT Slip",
       "s4_desc": "Screen briefly displays selected candidate confirming the vote, then slip disappears."
-    }
+    },
+    "booth_title": "Voting Booth Process",
+    "machine_title": "EVM Machine Display"
   }
 }

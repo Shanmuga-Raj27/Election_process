@@ -49,6 +49,7 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/')}
+            aria-label="Back to Homepage"
             className="flex items-center gap-2 px-5 py-2.5 bg-saffron text-white rounded-full font-bold shadow-lg shadow-saffron/20 hover:bg-[#e55a15] hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-95"
           >
             <Home size={18} />
@@ -136,6 +137,7 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
             <button
               type="submit"
               disabled={!input.trim() || isTyping}
+              aria-label="Send message"
               className="shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-navy text-white flex items-center justify-center hover:bg-saffron disabled:opacity-20 disabled:hover:bg-navy transition-all shadow-lg active:scale-95"
             >
               <Send size={24} />

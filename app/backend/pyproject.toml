@@ -1,7 +1,40 @@
 [project]
-name = "backend"
+name = "neic-backend"
 version = "0.1.0"
-description = "Add your description here"
+description = "Backend for the National Election Information Companion (NEIC)"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy",
+    "pydantic",
+    "pydantic-settings",
+    "google-genai",
+    "python-dotenv",
+    "firebase-admin",
+    "requests",
+    "httpx"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-mock",
+    "black",
+    "isort"
+]
+
+[tool.pyright]
+include = ["."]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    ".venv"
+]
+reportMissingImports = true
+typeCheckingMode = "basic"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"

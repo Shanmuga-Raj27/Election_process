@@ -4,6 +4,8 @@ import { Home, Globe, BotMessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Footer from '../components/Footer';
+import votingBoothImg from '../assets/images/evm_machine.jpg';
+import evmMachineImg from '../assets/images/voting_booth.jpg';
 
 const EVMGuide = () => {
   const { t, i18n } = useTranslation();
@@ -65,9 +67,8 @@ const EVMGuide = () => {
                     <button
                       key={lng.code}
                       onClick={() => changeLanguage(lng.code)}
-                      className={`w-full text-left px-4 py-2 text-sm font-bold transition-colors ${
-                        i18n.language === lng.code ? 'text-saffron bg-orange-50' : 'text-navy hover:bg-gray-50'
-                      }`}
+                      className={`w-full text-left px-4 py-2 text-sm font-bold transition-colors ${i18n.language === lng.code ? 'text-saffron bg-orange-50' : 'text-navy hover:bg-gray-50'
+                        }`}
                     >
                       {lng.name}
                     </button>
@@ -101,7 +102,7 @@ const EVMGuide = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube-nocookie.com/embed/n3W-oVn4lXo?rel=0"
+                src="https://www.youtube.com/embed/OM_SHBkQv5o?si=daABepyzuZxWKo4k"
                 title="How to Vote Using EVM"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -115,24 +116,24 @@ const EVMGuide = () => {
             <div className="card-gradient-border p-1">
               <div className="bg-gray-100 rounded-[16px] overflow-hidden aspect-video relative group">
                 <img
-                  src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?q=80&w=1000&auto=format&fit=crop"
+                  src={votingBoothImg}
                   alt="Voting Booth Process"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <span className="text-white font-black text-xl">{t('evm.procedure', 'Voting Procedure')}</span>
+                  <span className="text-white font-black text-xl">{t()}</span>
                 </div>
               </div>
             </div>
             <div className="card-gradient-border p-1">
               <div className="bg-gray-100 rounded-[16px] overflow-hidden aspect-video relative group">
                 <img
-                  src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=1000&auto=format&fit=crop"
+                  src={evmMachineImg}
                   alt="EVM Machine Display"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <span className="text-white font-black text-xl">{t('evm.identity', 'Identity Verification')}</span>
+                  <span className="text-white font-black text-xl">{t()}</span>
                 </div>
               </div>
             </div>
