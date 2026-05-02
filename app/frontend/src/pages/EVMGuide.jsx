@@ -4,8 +4,8 @@ import { Home, Globe, BotMessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Footer from '../components/Footer';
-import votingBoothImg from '../assets/images/evm_machine.jpg';
-import evmMachineImg from '../assets/images/voting_booth.jpg';
+import votingBoothImg from '../assets/images/voting_booth.jpg';
+import evmMachineImg from '../assets/images/evm_machine.jpg';
 
 const EVMGuide = () => {
   const { t, i18n } = useTranslation();
@@ -116,24 +116,24 @@ const EVMGuide = () => {
             <div className="card-gradient-border p-1">
               <div className="bg-gray-100 rounded-[16px] overflow-hidden aspect-video relative group">
                 <img
-                  src={votingBoothImg}
-                  alt="Voting Booth Process"
+                  src={evmMachineImg}
+                  alt="EVM Machine Display"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <span className="text-white font-black text-xl">{t()}</span>
+                  <span className="text-white font-black text-xl">{t('evm.machine_title')}</span>
                 </div>
               </div>
             </div>
             <div className="card-gradient-border p-1">
               <div className="bg-gray-100 rounded-[16px] overflow-hidden aspect-video relative group">
                 <img
-                  src={evmMachineImg}
-                  alt="EVM Machine Display"
+                  src={votingBoothImg}
+                  alt="Voting Booth Process"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <span className="text-white font-black text-xl">{t()}</span>
+                  <span className="text-white font-black text-xl">{t('evm.booth_title')}</span>
                 </div>
               </div>
             </div>
