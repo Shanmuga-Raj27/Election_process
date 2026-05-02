@@ -1,3 +1,7 @@
+"""
+Core API logic for the National Election Information Companion (NEIC).
+Handles authentication verification, chat sessions, and history retrieval.
+"""
 import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException, Header

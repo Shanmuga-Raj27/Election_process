@@ -1,15 +1,15 @@
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import Introduction from '../components/Introduction';
-import WhyVotingMatters from '../components/WhyVotingMatters';
-import ElectionProcess from '../components/ElectionProcess';
-import TypesOfElections from '../components/TypesOfElections';
-import CompareHouses from '../components/CompareHouses';
-import RegistrationGuide from '../components/RegistrationGuide';
-import Eligibility from '../components/Eligibility';
-import Awareness from '../components/Awareness';
-import FAQ from '../components/FAQ';
-import Footer from '../components/Footer';
+import Navbar from '../components/common/Navbar';
+import Hero from '../components/home/Hero';
+import Introduction from '../components/home/Introduction';
+import WhyVotingMatters from '../components/home/WhyVotingMatters';
+import ElectionProcess from '../components/home/ElectionProcess';
+import TypesOfElections from '../components/home/TypesOfElections';
+import CompareHouses from '../components/home/CompareHouses';
+import RegistrationGuide from '../components/home/RegistrationGuide';
+import Eligibility from '../components/home/Eligibility';
+import Awareness from '../components/home/Awareness';
+import FAQ from '../components/home/FAQ';
+import Footer from '../components/common/Footer';
 
 const Home = () => {
   return (

@@ -1,13 +1,57 @@
-import { useState, useRef, useEffect } from 'react';
-import { Send, Loader2, Home, ArrowLeft } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { Send, Loader2, Home, ArrowLeft, Mic, MicOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ChatMessage from './ChatMessage';
+
+const LANG_MAP = { en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN' };
 
 const ChatArea = ({ messages, isTyping, onSendMessage }) => {
   const [input, setInput] = useState('');
+  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const recognitionRef = useRef(null);
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+
+  // Web Speech API setup
+  const toggleListening = useCallback(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Your browser does not support voice input. Please use Google Chrome.');
+      return;
+    }
+
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = LANG_MAP[i18n.language] || 'en-IN';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInput((prev) => (prev ? prev + ' ' + transcript : transcript));
+      inputRef.current?.focus();
+    };
+
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+
+    recognitionRef.current = recognition;
+    recognition.start();
+    setIsListening(true);
+  }, [isListening, i18n.language]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => recognitionRef.current?.stop();
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -134,6 +178,18 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
               rows={1}
               disabled={isTyping}
             />
+            <button
+              type="button"
+              onClick={toggleListening}
+              aria-label={isListening ? 'Stop voice input' : 'Start voice input'}
+              className={`shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all shadow-lg active:scale-95 ${
+                isListening
+                  ? 'bg-red-500 text-white animate-pulse hover:bg-red-600'
+                  : 'bg-gray-200 text-navy hover:bg-gray-300'
+              }`}
+            >
+              {isListening ? <MicOff size={22} /> : <Mic size={22} />}
+            </button>
             <button
               type="submit"
               disabled={!input.trim() || isTyping}

@@ -1,3 +1,7 @@
+"""
+Database configuration and session management for the NEIC platform.
+Handles SQLAlchemy engine initialization and the ChatMessage model.
+"""
 import os
 from datetime import datetime, timezone
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime

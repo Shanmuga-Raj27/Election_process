@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Menu, X, Languages, Bot, LogOut, User, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();

@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Home, Globe, BotMessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Footer from '../components/Footer';
-import votingBoothImg from '../assets/images/voting_booth.jpg';
-import evmMachineImg from '../assets/images/evm_machine.jpg';
+import Footer from '../components/common/Footer';
+import votingBoothImg from '../assets/images/voting_booth.webp';
+import evmMachineImg from '../assets/images/evm_machine.webp';
 
 const EVMGuide = () => {
   const { t, i18n } = useTranslation();

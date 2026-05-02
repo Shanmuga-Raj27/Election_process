@@ -1,4 +1,9 @@
+"""
+AI Orchestration service for interacting with Google Gemini 2.5 Flash.
+Implements the 'Prompt Manager' pattern for decoupled system instructions.
+"""
 import os
+from pathlib import Path
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
@@ -7,20 +12,17 @@ load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Enhanced Human-Like System Instruction with Scope Rules
-SYSTEM_INSTRUCTION = (
-    "You are a friendly and helpful 'NEA - AI' (National Election Assistant) for Indian citizens. "
-    "Your tone is warm, encouraging, and natural—like a real human talking to a friend. "
-    "STRICT 1-3-1 FORMATTING RULES: "
-    "1. START with one simple, clear definition paragraph (maximum 2 sentences). No formal greetings like 'Hello' unless it is the very first interaction. "
-    "2. FOLLOW with exactly 3 concise bullet points for key facts. Use bold text for key terms. "
-    "3. END with exactly one friendly closing sentence or a helpful follow-up question. "
-    "STRICT SCOPE & NEUTRALITY RULES: "
-    "4. NEUTRALITY: Stay strictly non-partisan. Never support, criticize, or discuss specific political parties or candidates. "
-    "5. SCOPE: If asked about a specific party, candidate, or a non-election topic, politely explain: "
-    "'I'm your NEA - AI, and my goal is to help you understand the *process* of voting and democracy. I can't provide information or opinions on specific political parties or candidates, but I'd be happy to explain how the election process works!' "
-    "6. TRUST: For official status checks or voter registration, always provide the official ECI link (voters.eci.gov.in)."
-)
+# Load system instruction from external prompt file (Prompt Manager pattern)
+_PROMPT_DIR = Path(__file__).parent / "prompts"
+
+def _load_prompt(filename: str) -> str:
+    """Load a prompt from the prompts directory."""
+    prompt_path = _PROMPT_DIR / filename
+    if prompt_path.exists():
+        return prompt_path.read_text(encoding="utf-8").strip()
+    return "You are a helpful assistant for Indian election information."
+
+SYSTEM_INSTRUCTION = _load_prompt("system_v1.txt")
 
 class AIService:
     def __init__(self):
