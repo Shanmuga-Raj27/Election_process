@@ -35,7 +35,7 @@ const Login = () => {
         body: JSON.stringify({ id_token: token })
       });
     } catch (err) {
-      console.error("Backend sync failed", err);
+      console.error("Backend sync failed:", err.message);
     }
   };
 
