@@ -1,0 +1,10 @@
+[build]
+  base = "app/frontend"
+  command = "npm run build"
+  publish = "dist"
+
+# Fix Cross-Origin-Opener-Policy for Firebase Google Sign-In popup
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"

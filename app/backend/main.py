@@ -53,10 +53,7 @@ async def get_current_user(authorization: Optional[str] = Header(None)):
         decoded_token = auth.verify_id_token(token)
         return decoded_token['uid']
     except Exception as e:
-        # Fallback for development if key is missing (only for demo purposes)
-        if not os.path.exists("serviceAccountKey.json"):
-            return "debug_user"
-        raise HTTPException(status_code=401, detail=f"Invalid token: {str(e)}")
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
 
 class ChatRequest(BaseModel):
     session_id: str
@@ -89,9 +86,7 @@ async def verify_token(request: AuthVerifyRequest):
         decoded_token = auth.verify_id_token(request.id_token)
         return {"status": "success", "uid": decoded_token['uid']}
     except Exception as e:
-        if not os.path.exists("serviceAccountKey.json"):
-            return {"status": "debug_bypass", "uid": "debug_user"}
-        raise HTTPException(status_code=401, detail=str(e))
+        raise HTTPException(status_code=401, detail="Token verification failed")
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest, db: Session = Depends(get_db), uid: str = Depends(get_current_user)):
