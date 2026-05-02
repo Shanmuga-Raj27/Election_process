@@ -1,60 +1,77 @@
-# 📚 National Election Information Companion (NEIC)
+# 🇮🇳 NEIC: National Election Information Companion
 
-**Live Demo:** https://neic-project.netlify.app/
+[![Live Deployment](https://img.shields.io/badge/🚀_Live_Demo-NEIC_Platform-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://neic-project.netlify.app/)
 
-## Overview
-NEIC (also known as NEA‑AI) is a lightweight AI‑powered web app that helps Indian citizens understand the election process, how to use EVMs, and their voting rights. It offers a friendly chat interface, visual guides, and multi‑language support (English, Hindi, Tamil).
+> [!NOTE]  
+> **A Google Virtual PromptWar Innovation:** This project is strictly for educational and civic empowerment purposes, engineered entirely through **Google Antigravity AI-assisted coding**, advanced prompt engineering, and state-of-the-art LLM optimization techniques.
 
-## Purpose
-- Provide **non‑partisan** information about voting and democracy.
-- Guide users through registration, booth location, and EVM operation.
-- Offer a simple, interactive chat powered by Google Gemini 2.5 Flash.
+## 🚀 Vision & Overview
 
-## Tech Stack
-| Layer | Technologies |
-|-------|--------------|
-| Frontend | React (Vite), Tailwind CSS, Framer Motion, i18next, Lucide Icons, Firebase Auth |
-| Backend  | FastAPI (Python), SQLAlchemy, SQLite, Firebase Admin SDK |
-| AI       | Google Gemini 2.5 Flash |
+The **National Election Information Companion (NEIC)** is a next-generation, AI-driven civic technology platform designed to democratize electoral knowledge for Indian citizens. By bridging the information gap through advanced Natural Language Processing (NLP) and context-aware interactions, NEIC demystifies the election process, the mechanics of Electronic Voting Machines (EVMs), and fundamental democratic rights.
 
-## Project Folder Architecture
-```
+At its core operates **NEA-AI (National Election Assistant AI)**—a highly optimized, hallucination-resistant, non-partisan AI agent. Powered by sophisticated prompt architectures, NEA-AI delivers accurate, multi-lingual (English, Hindi, Tamil) guidance, transforming complex civic data into accessible, interactive conversations.
+
+---
+
+## 🧠 Cutting-Edge Tech Stack
+
+Built with a robust, highly scalable full-stack architecture focusing on seamless AI integration, rapid asynchronous processing, and an immersive user experience.
+
+### Artificial Intelligence & Prompt Engineering
+![Google Gemini](https://img.shields.io/badge/Google_Gemini_2.5_Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white) 
+* **Core Model:** Google Generative AI (Gemini 2.5 Flash)
+* **Optimization:** Context-bound prompt isolation, multi-lingual token optimization, and zero-shot civic data retrieval.
+
+### Frontend Interface (Client-Side)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Framer](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
+* **Architecture:** React (Vite) Single Page Application (SPA)
+* **Design System:** Tailwind CSS with fluid, hardware-accelerated Framer Motion animations
+* **Localization:** `i18next` for seamless dynamic language switching
+* **Authentication:** Firebase Auth
+
+### Backend Services (Server-Side)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi) ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+* **Framework:** FastAPI for high-performance, asynchronous RESTful API endpoints
+* **Data Layer:** SQLAlchemy ORM with SQLite
+* **Security & Auth Validation:** Firebase Admin SDK
+
+### Cloud Infrastructure & Deployment
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white) ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+* **Frontend Hosting:** Netlify (with advanced SPA routing and custom Cross-Origin Opener Policy headers)
+* **Backend Hosting:** Render (Infrastructure as Code via `render.yaml` Blueprint)
+
+---
+
+## 🛡️ AI Safety, Security & Ethics Guardrails
+
+To ensure integrity and reliability, NEIC is fortified with strict ethical constraints and security protocols:
+
+* **Non-Partisan System Prompts:** NEA-AI utilizes constrained generation techniques to actively neutralize political bias, decline candidate endorsements, and remain strictly educational.
+* **Data Sovereignty:** Zero user chat data is retained for external LLM training. Authentication states are securely managed via Firebase.
+* **Network Security:** End-to-end encryption with custom Netlify COOP/COEP headers to mitigate cross-site vulnerabilities.
+
+---
+
+## 📁 System Architecture
+
+```text
 Election Assistant/
-├─ app/
-│  ├─ backend/            # FastAPI server
-│  │   ├─ ai_service.py    # Gemini integration
-│  │   ├─ cli_chatbot.py   # Authenticated CLI tool
-│  │   ├─ database.py      # SQLAlchemy models
-│  │   ├─ main.py          # API routes & auth
-│  │   └─ tests/           # Pytest suite
-│  └─ frontend/           # React UI
-│      ├─ public/          # Static files, _redirects
-│      └─ src/
-│          ├─ assets/      # Images & i18n JSONs
-│          ├─ components/  # Re‑usable UI components
-│          ├─ context/     # Auth context
-│          ├─ pages/       # Home, Chat, EVM Guide, Login
-│          ├─ services/    # API wrapper
-│          └─ tests/       # Vitest component tests
-├─ prompt_base/            # Gemini prompts used in the project
-├─ system_design/          # Architecture documentation
-├─ render.yaml             # Render deployment configuration
-└─ netlify.toml            # Netlify custom headers (COOP fix)
-```
-
-## Deployment
-- **Backend:** Deployed on Render via `render.yaml` (Python 3.12, Uvicorn). Firebase service‑account key is stored as a secret file.
-- **Frontend:** Deployed on Netlify. SPA routing handled by `_redirects`; custom header `Cross-Origin-Opener-Policy: same-origin-allow-popups` enables Google Sign‑In pop‑ups.
-
-## Social & Contact
-- **Live Platform:** https://neic-project.netlify.app/
-- **LinkedIn Post:** https://www.linkedin.com/posts/shanmugaraj-r-644782290_google-promptwar-ai-activity-7302213793616683009-qj_l
-- **Technical Blog:** *(placeholder – add your blog URL)*
-- **Instagram Showcase:** *(placeholder – add Instagram URL)*
-
-### Developer
-**Shanmugaraj R**
-- LinkedIn: https://www.linkedin.com/in/shanmugaraj-r-644782290/
-- GitHub: https://github.com/Shanmuga-Raj27
-
-> **Note:** This project is for educational purposes only and was fully built using **Google Antigravity AI‑assisted coding**.
+├── app/
+│   ├── backend/
+│   │   ├── ai_service.py       # Core Gemini integration & prompt guardrails
+│   │   ├── cli_chatbot.py      # Authenticated terminal interface
+│   │   ├── database.py         # SQLAlchemy data models
+│   │   ├── main.py             # Asynchronous FastAPI routing
+│   │   └── tests/              # Pytest verification suite
+│   └── frontend/
+│       ├── public/             # Static assets & Netlify _redirects
+│       └── src/
+│           ├── components/     # Modular React UI Components
+│           ├── context/        # Global Auth & State Management
+│           ├── pages/          # Home, Interactive Chat, EVM Guide
+│           ├── services/       # Backend API communication layer
+│           └── assets/locales/ # i18n Translation dictionaries (EN, HI, TA)
+├── prompt_base/                # Highly optimized, role-playing Gemini Prompts
+├── system_design/              # Technical documentation & flowcharts
+├── render.yaml                 # Render infrastructure deployment script
+└── netlify.toml                # Netlify security and routing configurations
