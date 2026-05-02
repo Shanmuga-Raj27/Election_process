@@ -118,11 +118,8 @@ const EVMGuide = () => {
                 <img
                   src={evmMachineImg}
                   alt="EVM Machine Display"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <span className="text-white font-black text-xl">{t('evm.machine_title')}</span>
-                </div>
               </div>
             </div>
             <div className="card-gradient-border p-1">
@@ -130,11 +127,8 @@ const EVMGuide = () => {
                 <img
                   src={votingBoothImg}
                   alt="Voting Booth Process"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <span className="text-white font-black text-xl">{t('evm.booth_title')}</span>
-                </div>
               </div>
             </div>
           </div>
