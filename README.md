@@ -75,3 +75,18 @@ Election Assistant/
 ├── system_design/              # Technical documentation & flowcharts
 ├── render.yaml                 # Render infrastructure deployment script
 └── netlify.toml                # Netlify security and routing configurations
+```
+
+## Social & Contact
+- **Live Platform:** https://neic-project.netlify.app/
+- **LinkedIn Post:** https://www.linkedin.com/posts/shanmugaraj-r-644782290_google-promptwar-ai-activity-7302213793616683009-qj_l
+- **Technical Blog:** *(placeholder – add your blog URL)*
+- **Instagram Showcase:** *(placeholder – add Instagram URL)*
+
+### Developer
+**Shanmugaraj R**
+- LinkedIn: https://www.linkedin.com/in/shanmugaraj-r-644782290/
+- GitHub: https://github.com/Shanmuga-Raj27
+
+> **Note:** This project is for educational purposes only and was fully built using **Google Antigravity AI‑assisted coding**.
+
