@@ -11,10 +11,24 @@ import pytest
 from unittest.mock import MagicMock
 from fastapi.testclient import TestClient
 
+import sys
+from pathlib import Path
+# Add backend to sys.path to allow absolute imports without dots
+sys.path.append(str(Path(__file__).parent.parent))
+
 # Set TESTING env var before importing app modules
 os.environ["TESTING"] = "1"
 
-from ..main import app, get_current_user
+# ─── Pre-Import Mocks ───────────────────────────────────────────────────
+# We mock these BEFORE importing main to prevent it from trying to connect 
+# to real Google Cloud services during test collection.
+import firebase_admin
+if not firebase_admin._apps:
+    firebase_admin.initialize_app = MagicMock()
+    firebase_admin.credentials = MagicMock()
+
+# ─── App Import ─────────────────────────────────────────────────────────
+from main import app, get_current_user
 
 # ─── Firestore Mocking Logic ───────────────────────────────────────────
 class MockFirestore:
@@ -95,11 +109,11 @@ async def override_get_current_user():
 def mock_db_init(mocker):
     """Intercept Firestore initialization and inject our MockFirestore."""
     mock_fs = MockFirestore()
-    mocker.patch("app.backend.main.db", mock_fs)
+    mocker.patch("main.db", mock_fs)
     # Patch firestore.ArrayUnion to work with our mock
     mock_union = MagicMock()
     mock_union.side_effect = lambda x: MagicMock(union_elements=x)
-    mocker.patch("app.backend.main.firestore.ArrayUnion", mock_union)
+    mocker.patch("main.firestore.ArrayUnion", mock_union)
     
     app.dependency_overrides[get_current_user] = override_get_current_user
     yield mock_fs

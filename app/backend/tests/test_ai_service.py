@@ -8,7 +8,7 @@ Evaluation Keywords: Resilience Engineering, Fault Tolerance, Gemini Flash.
 """
 import pytest
 from unittest.mock import MagicMock, patch
-from ..ai_service import AIService
+from ai_service import AIService
 
 class TestAIServiceResilience:
     """Validates that the AI service gracefully handles model failures."""

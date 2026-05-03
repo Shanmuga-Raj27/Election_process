@@ -18,21 +18,29 @@ from pydantic import BaseModel
 
 import firebase_admin
 from firebase_admin import credentials, auth, firestore
-from .ai_service import ai_service
+from ai_service import ai_service as ai
 
 # ─── Firebase & Firestore Initialization ────────────────────────────────
 db = None
 try:
-    cred_path = os.getenv("FIREBASE_SERVICE_ACCOUNT", "serviceAccountKey.json")
-    if os.path.exists(cred_path):
-        cred = credentials.Certificate(cred_path)
-        firebase_admin.initialize_app(cred)
-        db = firestore.client()
-        print("✅ Firebase & Firestore initialized successfully.")
-    else:
-        print("Warning: FIREBASE_SERVICE_ACCOUNT not found. Auth only mode.")
+    cred_file = os.environ.get("FIREBASE_SERVICE_ACCOUNT", "serviceAccountKey.json")
+    
+    if not firebase_admin._apps:
+        if os.path.exists(cred_file):
+            # 1. Use Service Account (Local/Render)
+            cred = credentials.Certificate(cred_file)
+            firebase_admin.initialize_app(cred)
+            print(f"✅ Firebase initialized via Service Account ({cred_file})")
+        else:
+            # 2. Use Application Default (Cloud Run)
+            cred = credentials.ApplicationDefault()
+            firebase_admin.initialize_app(cred)
+            print("✅ Firebase initialized via Application Default (Cloud Run)")
+    
+    db = firestore.client()
+    print("🚀 Firestore connected successfully.")
 except Exception as e:
-    print(f"Firebase Init Error: {e}")
+    print(f"❌ Firebase Init Error: {e}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -42,13 +50,24 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="NEA - AI (Cloud-Native)", lifespan=lifespan)
 
 # ─── Middleware ──────────────────────────────────────────────────────────
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+# Hardened CORS policy for production
+ALLOWED_ORIGINS = [
+    "https://neic-project.web.app",
+    "https://neic-project-495211.web.app"
+]
+
+# Allow dynamic overrides via env var if needed (e.g. for local dev)
+ENV_ORIGINS = os.getenv("ALLOWED_ORIGINS")
+if ENV_ORIGINS:
+    ALLOWED_ORIGINS.extend(ENV_ORIGINS.split(","))
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["X-Firebase-Auth"], 
 )
 
 # ─── Models ──────────────────────────────────────────────────────────────
@@ -60,15 +79,16 @@ class AuthVerifyRequest(BaseModel):
     id_token: str
 
 # ─── Authentication Dependency ──────────────────────────────────────────
-async def get_current_user(authorization: Optional[str] = Header(None)):
-    if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Invalid token format")
+async def get_current_user(x_firebase_auth: Optional[str] = Header(None)):
+    if not x_firebase_auth or not x_firebase_auth.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Invalid token format in X-Firebase-Auth")
     
-    token = authorization.split("Bearer ")[1]
+    token = x_firebase_auth.split("Bearer ")[1]
     try:
-        decoded_token = auth.verify_id_token(token)
+        decoded_token = auth.verify_id_token(token, clock_skew_seconds=10)
         return decoded_token # Contains 'uid', 'email', etc.
-    except Exception:
+    except Exception as e:
+        print(f"DEBUG AUTH ERROR: {str(e)}") # Crucial for Cloud Run logging
         raise HTTPException(status_code=401, detail="Authentication failed")
 
 # ─── Endpoints ───────────────────────────────────────────────────────────
@@ -80,9 +100,10 @@ async def root():
 @app.post("/auth/verify")
 async def verify_token(request: AuthVerifyRequest):
     try:
-        decoded_token = auth.verify_id_token(request.id_token)
+        decoded_token = auth.verify_id_token(request.id_token, clock_skew_seconds=10)
         return {"status": "success", "uid": decoded_token['uid']}
-    except Exception:
+    except Exception as e:
+        print(f"DEBUG AUTH ERROR: {str(e)}") # Real reason logged to Cloud Run
         raise HTTPException(status_code=401, detail="Invalid ID Token")
 
 @app.get("/sessions")
@@ -150,7 +171,7 @@ async def chat_stream(request: ChatRequest, user=Depends(get_current_user)):
         full_response = ""
         try:
             # Get streaming generator from Resilience Service
-            for chunk in ai_service.get_streaming_response(user_msg, current_history):
+            for chunk in ai.get_streaming_response(user_msg, current_history):
                 full_response += chunk
                 yield chunk
 

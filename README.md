@@ -1,6 +1,6 @@
 # NEIC: National Election Information Companion
 
-**Live Link:** [🔗 Live Link](https://neic-project.netlify.app/)
+**Live Link:** [🔗 Live Link](https://neic-project-495211.web.app/)
 
 > [!NOTE]  
 > **A Google Virtual PromptWar Innovation:** This project is strictly for educational and civic empowerment purposes, engineered entirely through **Google Antigravity AI-assisted coding**, advanced prompt engineering, and state-of-the-art LLM optimization techniques.

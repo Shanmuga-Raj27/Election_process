@@ -7,7 +7,7 @@ Evaluation Keywords: JWT Enforcement, Multi-tenant Isolation, Firestore Security
 """
 import pytest
 from fastapi.testclient import TestClient
-from ..main import app, get_current_user
+from main import app, get_current_user
 
 class TestAuthEnforcement:
     """Validates that the Auth Dependency correctly gates all endpoints."""
@@ -39,7 +39,7 @@ class TestDataIsolation:
 
     def test_session_ownership_verification(self, client, authenticated_client_factory, mocker):
         """User B must be forbidden from accessing User A's session document."""
-        mocker.patch("app.backend.main.ai_service.get_streaming_response", return_value=["ok"])
+        mocker.patch("main.ai.get_streaming_response", return_value=["ok"])
         
         # 1. Alice creates a session
         alice = authenticated_client_factory("alice_123")

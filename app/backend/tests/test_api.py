@@ -25,7 +25,7 @@ class TestChatStreaming:
         """Streaming chat must return text chunks and persist a session document."""
         # Mock the AI streaming service
         mocker.patch(
-            "app.backend.main.ai_service.get_streaming_response",
+            "main.ai.get_streaming_response",
             return_value=["Hello", " world", "!"]
         )
 
@@ -33,13 +33,13 @@ class TestChatStreaming:
         response = client.post("/chat/stream", json={
             "session_id": "test-stream-1",
             "message": "Hi"
-        }, headers={"Authorization": "Bearer mock-token"})
+        }, headers={"X-Firebase-Auth": "Bearer mock-token"})
         
         assert response.status_code == 200
         assert response.text == "Hello world!"
         
         # Verify it was saved to the 'sessions' endpoint
-        hist_response = client.get("/history/test-stream-1", headers={"Authorization": "Bearer mock-token"})
+        hist_response = client.get("/history/test-stream-1", headers={"X-Firebase-Auth": "Bearer mock-token"})
         messages = hist_response.json()
         assert len(messages) == 1
         assert messages[0]["user_message"] == "Hi"
@@ -50,13 +50,13 @@ class TestHistoryAndSessions:
 
     def test_get_sessions_list(self, client, mocker):
         """Must return a list of active chat sessions from Firestore."""
-        mocker.patch("app.backend.main.ai_service.get_streaming_response", return_value=["ok"])
+        mocker.patch("main.ai.get_streaming_response", return_value=["ok"])
         
         # Create two sessions
-        client.post("/chat/stream", json={"session_id": "s1", "message": "First"}, headers={"Authorization": "Bearer t"})
-        client.post("/chat/stream", json={"session_id": "s2", "message": "Second"}, headers={"Authorization": "Bearer t"})
+        client.post("/chat/stream", json={"session_id": "s1", "message": "First"}, headers={"X-Firebase-Auth": "Bearer t"})
+        client.post("/chat/stream", json={"session_id": "s2", "message": "Second"}, headers={"X-Firebase-Auth": "Bearer t"})
         
-        response = client.get("/sessions", headers={"Authorization": "Bearer t"})
+        response = client.get("/sessions", headers={"X-Firebase-Auth": "Bearer t"})
         assert response.status_code == 200
         sessions = response.json()
         assert len(sessions) == 2
@@ -66,7 +66,7 @@ class TestHistoryAndSessions:
 
     def test_history_belongs_to_user(self, client, authenticated_client_factory, mocker):
         """User A must not be able to read User B's history."""
-        mocker.patch("app.backend.main.ai_service.get_streaming_response", return_value=["ok"])
+        mocker.patch("main.ai.get_streaming_response", return_value=["ok"])
         
         # Alice creates a chat
         alice = authenticated_client_factory("alice")

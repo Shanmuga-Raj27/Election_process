@@ -14,7 +14,7 @@ export const chatApi = {
     try {
       const response = await fetch(`${API_BASE_URL}/sessions`, {
         headers: {
-          'Authorization': `Bearer ${token}`
+          'X-Firebase-Auth': `Bearer ${token}`
         }
       });
       if (!response.ok) throw new Error('Failed to fetch sessions');
@@ -35,7 +35,7 @@ export const chatApi = {
     try {
       const response = await fetch(`${API_BASE_URL}/history/${sessionId}`, {
         headers: {
-          'Authorization': `Bearer ${token}`
+          'X-Firebase-Auth': `Bearer ${token}`
         }
       });
       if (!response.ok) throw new Error('Failed to fetch history');
@@ -59,7 +59,7 @@ export const chatApi = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'X-Firebase-Auth': `Bearer ${token}`
         },
         body: JSON.stringify({ session_id: sessionId, message }),
       });
@@ -119,7 +119,7 @@ export const chatApi = {
       fetch(`${API_BASE_URL}/chat/warmup`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`
+          'X-Firebase-Auth': `Bearer ${token}`
         }
       });
     } catch { /* Silent fail for optimization pings */ }

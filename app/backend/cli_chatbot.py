@@ -72,7 +72,7 @@ def chat(id_token: str, user_email: str):
     # Configuration
     session_id = str(uuid.uuid4())
     headers = {
-        "Authorization": f"Bearer {id_token}",
+        "X-Firebase-Auth": f"Bearer {id_token}",
         "Content-Type": "application/json",
     }
 
@@ -108,7 +108,8 @@ def chat(id_token: str, user_email: str):
                             print(chunk, end="", flush=True)
                     print("\n")
                 elif response.status_code == 401:
-                    print("🔒 Session expired. Please restart and log in again.")
+                    print("🔒 Session expired or Authentication failed.")
+                    print(f"   Server details: {response.text}")
                     break
                 else:
                     print(f"⚠️  Server error: {response.status_code}")

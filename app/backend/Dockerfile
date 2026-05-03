@@ -31,6 +31,7 @@ COPY . .
 # Set environment defaults to match Google Cloud Run exactly
 ENV PORT=8080
 ENV PYTHONUNBUFFERED=1
+ENV FIREBASE_PROJECT_ID=neic-project-495211
 
 # Expose the Cloud Run port
 EXPOSE 8080
