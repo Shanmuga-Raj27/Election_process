@@ -44,7 +44,7 @@ npm test -- --run
 #### **1. Check API Health**
 Verify the backend is online and responding:
 ```powershell
-curl http://127.0.0.1:8000/
+curl http://0.0.0.0:8080/
 ```
 *Expected: `{"message": "NEA - AI Backend is online."}`*
 

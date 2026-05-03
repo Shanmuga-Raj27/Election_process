@@ -2,7 +2,7 @@
  * API Service Layer for the NEIC Platform.
  * Handles all backend communication including RESTful and SSE streaming endpoints.
  */
-const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://127.0.0.1:8000' : '');
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://0.0.0.0:8080' : '');
 
 export const chatApi = {
   /**

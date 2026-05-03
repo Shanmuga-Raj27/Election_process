@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ─── Configuration ──────────────────────────────────────────────────────
-SERVER_URL = os.getenv("CLI_SERVER_URL", "http://127.0.0.1:8000") # Defaults to local if .env is missing it
+SERVER_URL = os.getenv("CLI_SERVER_URL", "http://0.0.0.0:8080") # Defaults to local if .env is missing it
 FIREBASE_WEB_API_KEY = os.getenv("FIREBASE_WEB_API_KEY")
 FIREBASE_AUTH_URL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword"
 
