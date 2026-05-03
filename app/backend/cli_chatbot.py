@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ─── Configuration ──────────────────────────────────────────────────────
-SERVER_URL = os.getenv("CLI_SERVER_URL", "http://127.0.0.1:8000")
+SERVER_URL = os.getenv("CLI_SERVER_URL", "http://127.0.0.1:8000") # Defaults to local if .env is missing it
 FIREBASE_WEB_API_KEY = os.getenv("FIREBASE_WEB_API_KEY")
 FIREBASE_AUTH_URL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword"
 
@@ -69,6 +69,7 @@ def chat(id_token: str, user_email: str):
     Main chat loop. Sends authenticated requests to the FastAPI backend
     so that every message is saved to the database under the user's UID.
     """
+    # Configuration
     session_id = str(uuid.uuid4())
     headers = {
         "Authorization": f"Bearer {id_token}",

@@ -6,7 +6,7 @@ import ChatMessage from './ChatMessage';
 
 const LANG_MAP = { en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN' };
 
-const ChatArea = ({ messages, isTyping, onSendMessage }) => {
+const ChatArea = ({ messages, isTyping, onSendMessage, onTypingStart }) => {
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef(null);
@@ -100,6 +100,9 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
             <span>Homepage</span>
           </button>
           <div className="px-3 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-full border border-green-100">
+            NEA v2.1 (OPTIMIZED)
+          </div>
+          <div className="px-3 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded-full border border-blue-100">
             SECURE SESSION
           </div>
         </div>
@@ -139,23 +142,16 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
         ) : (
           <div className="max-w-4xl mx-auto w-full space-y-10 pb-10">
             {messages.map((msg, idx) => (
-              <ChatMessage key={idx} message={msg.text} isAI={msg.isAI} />
+              <ChatMessage 
+                key={idx} 
+                message={msg.text} 
+                isAI={msg.isAI} 
+                isThinking={msg.isThinking}
+                isStreaming={msg.isStreaming}
+              />
             ))}
             
-            {isTyping && (
-              <div className="flex gap-4 w-full animate-pulse">
-                <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-navy text-white shadow-md">
-                  <Loader2 size={20} className="animate-spin" />
-                </div>
-                <div className="bg-white p-5 rounded-3xl rounded-tl-none border-2 border-gray-100 shadow-sm max-w-[85%]">
-                  <div className="flex gap-1.5">
-                    <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                    <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                    <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                  </div>
-                </div>
-              </div>
-            )}
+
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -171,7 +167,13 @@ const ChatArea = ({ messages, isTyping, onSendMessage }) => {
             <textarea
               ref={inputRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value;
+                setInput(val);
+                if (val.length === 5 && onTypingStart) {
+                  onTypingStart();
+                }
+              }}
               onKeyDown={handleKeyDown}
               placeholder="Ask NEA anything about the elections..."
               className="flex-1 max-h-40 min-h-[48px] lg:min-h-[60px] bg-transparent resize-none border-0 focus:ring-0 px-4 py-3 lg:py-4 outline-none text-gray-800 font-medium text-base"

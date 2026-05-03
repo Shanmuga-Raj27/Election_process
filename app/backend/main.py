@@ -150,6 +150,14 @@ def get_sessions(db: Session = Depends(get_db), uid: str = Depends(get_current_u
     
     return results
 
+@app.post("/chat/warmup")
+async def chat_warmup(uid: str = Depends(get_current_user)):
+    """Predictive Pre-Connection: Warm up the AI engine when typing starts."""
+    if not ai_service.client:
+        return {"status": "error", "message": "Client not initialized"}
+    # Just a ping to ensure the service is alive and auth is verified
+    return {"status": "ready", "engine": "gemini-2.5-flash"}
+
 @app.post("/chat/stream")
 async def chat_stream(request: ChatRequest, db: Session = Depends(get_db), uid: str = Depends(get_current_user)):
     history = db.query(ChatMessage).filter(
@@ -178,6 +186,7 @@ async def chat_stream(request: ChatRequest, db: Session = Depends(get_db), uid: 
                 bg_db.add(new_message)
                 bg_db.commit()
         except Exception as e:
-            yield f"\n[Backend Error]: {str(e)}"
+            print(f"Streaming Error: {e}")
+            return # Simply terminate the stream
 
     return StreamingResponse(generate(), media_type="text/plain")

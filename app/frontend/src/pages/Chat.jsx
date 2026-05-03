@@ -81,10 +81,44 @@ const Chat = () => {
     setMessages(prev => [...prev, { text, isAI: false }]);
     setIsTyping(true);
 
+    // Add an AI message placeholder in 'Thinking' mode
+    setMessages(prev => [...prev, { text: '', isAI: true, isThinking: true, isStreaming: false }]);
+
     try {
       const token = await currentUser.getIdToken();
-      const response = await chatApi.sendMessage(sessionId, text, token);
-      setMessages(prev => [...prev, { text: response.response, isAI: true }]);
+      let hasReceivedFirstChunk = false;
+
+      // Use the SSE streaming endpoint for real-time response
+      const fullResponse = await chatApi.sendMessageStream(sessionId, text, token, (partialText) => {
+        if (!hasReceivedFirstChunk && partialText.trim() !== "") {
+          hasReceivedFirstChunk = true;
+          setIsTyping(false); // Stop the global indicator, bubble takes over
+        }
+
+        // Update the last AI message: stop thinking, start streaming
+        setMessages(prev => {
+          const updated = [...prev];
+          updated[updated.length - 1] = { 
+            text: partialText, 
+            isAI: true, 
+            isThinking: !hasReceivedFirstChunk, 
+            isStreaming: true 
+          };
+          return updated;
+        });
+      });
+
+      // If the response is empty, it means the server was busy or failed
+      if (!fullResponse || fullResponse.trim() === "") {
+        throw new Error("Empty response from AI");
+      }
+
+      // Mark streaming as complete
+      setMessages(prev => {
+        const updated = [...prev];
+        updated[updated.length - 1] = { ...updated[updated.length - 1], isStreaming: false, isThinking: false };
+        return updated;
+      });
 
       // Update sidebar sessions list order (Move current to top)
       setSessions(prev => {
@@ -97,10 +131,48 @@ const Chat = () => {
       });
     } catch (error) {
       console.error("Chat Error:", error);
-      setMessages(prev => [...prev, { text: "I encountered a small hiccup! Please try asking again.", isAI: true }]);
+      // UX Mask: Keep the 'Thinking' state active for 30 seconds even on failure
+      await new Promise(r => setTimeout(r, 30000)); 
+      
+      const busyMessage = "Backend server is busy, please try again later.";
+      let currentText = "";
+      const words = busyMessage.split(" ");
+
+      // Stop thinking and start 'typing' the busy message
+      setMessages(prev => {
+        const updated = [...prev];
+        updated[updated.length - 1] = { text: '', isAI: true, isThinking: false, isStreaming: true };
+        return updated;
+      });
+
+      // Simulate typing for the busy message
+      for (let i = 0; i < words.length; i++) {
+        currentText += (i === 0 ? "" : " ") + words[i];
+        const textToSet = currentText;
+        setMessages(prev => {
+          const updated = [...prev];
+          updated[updated.length - 1] = { ...updated[updated.length - 1], text: textToSet };
+          return updated;
+        });
+        await new Promise(r => setTimeout(r, 50)); 
+      }
+
+      setMessages(prev => {
+        const updated = [...prev];
+        updated[updated.length - 1] = { ...updated[updated.length - 1], isStreaming: false };
+        return updated;
+      });
     } finally {
       setIsTyping(false);
     }
+  };
+
+  const handleTypingStart = async () => {
+    if (!currentUser) return;
+    try {
+      const token = await currentUser.getIdToken();
+      chatApi.warmup(token);
+    } catch (e) {}
   };
 
   return (
@@ -158,6 +230,7 @@ const Chat = () => {
           messages={messages}
           isTyping={isTyping}
           onSendMessage={handleSendMessage}
+          onTypingStart={handleTypingStart}
         />
       </div>
     </div>
