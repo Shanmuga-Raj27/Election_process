@@ -35,5 +35,5 @@ ENV PYTHONUNBUFFERED=1
 # Expose the Cloud Run port
 EXPOSE 8080
 
-# Launch using uvicorn with explicit bracket syntax (Exec form)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Launch using the official FastAPI CLI for production
+CMD ["fastapi", "run", "main.py", "--host", "0.0.0.0", "--port", "8080"]
