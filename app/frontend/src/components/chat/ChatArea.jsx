@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Send, Loader2, Home, ArrowLeft, Mic, MicOff } from 'lucide-react';
+import { Send, Home, Mic, MicOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ChatMessage from './ChatMessage';

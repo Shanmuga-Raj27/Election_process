@@ -83,6 +83,8 @@ vi.mock('lucide-react', () => ({
   Code2: (props) => <div data-testid="icon-code" {...props} />,
   Mail: (props) => <div data-testid="icon-mail" {...props} />,
   ExternalLink: (props) => <div data-testid="icon-external" {...props} />,
+  Mic: (props) => <div data-testid="icon-mic" {...props} />,
+  MicOff: (props) => <div data-testid="icon-mic-off" {...props} />,
 }));
 
 // ─── Mock: Framer Motion ───────────────────────────────────────────────

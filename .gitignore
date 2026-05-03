@@ -1,33 +1,55 @@
-# Backend Secrets
-app/backend/.env
-app/backend/*.db
-app/backend/*.sqlite3
+# 🛡️ NEA - Security & Environment Exclusions
+# ============================================
+
+# ─── SECRETS (NEVER PUSH THESE) ────────────────────────────────────────
+**/.env
+**/.env.local
+**/.env.*.local
+**/*.json
+!**/package.json
+!**/tsconfig.json
+!**/manifest.json
+!**/locales/*.json
+!app/backend/pyproject.toml
+
+# Specific Firebase Secret
 app/backend/serviceAccountKey.json
 
-# Frontend Secrets
-app/frontend/.env
-app/frontend/.env.local
-app/frontend/.env.development.local
-app/frontend/.env.test.local
-app/frontend/.env.production.local
-
-# Dependency folders
+# ─── DEPENDENCIES ─────────────────────────────────────────────────────
 node_modules/
+**/node_modules/
 app/backend/.venv/
+venv/
+env/
+.env/
 
-# Build artifacts
+# ─── DATABASE ──────────────────────────────────────────────────────────
+# (Legacy SQLite exclusions kept for safety)
+*.db
+*.sqlite3
+**/*.db
+**/*.sqlite3
+
+# ─── PYTHON CACHE ──────────────────────────────────────────────────────
+__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ─── FRONTEND BUILD & CACHE ────────────────────────────────────────────
 dist/
 build/
-*.pyc
+.vite/
+.vitest_cache/
+.eslintcache
 
-# Python cache (all locations)
-__pycache__/
-*.py[oc]
-
-# Test artifacts
-.pytest_cache/
-*.db
-
-# System files
+# ─── SYSTEM & IDE ──────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.log

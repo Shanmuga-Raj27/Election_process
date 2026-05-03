@@ -1,8 +1,6 @@
 import { Plus, MessageSquare, X, History, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 
 const Sidebar = ({ sessions, onSelectSession, currentSessionId, onNewChat, onClose, isCollapsed, onToggleCollapse }) => {
-  const { t } = useTranslation();
 
   return (
     <aside className={`flex flex-col bg-white border-r border-gray-100 h-full w-full shadow-2xl transition-all duration-300 ${isCollapsed ? 'items-center' : ''}`}>

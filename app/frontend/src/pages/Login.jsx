@@ -15,13 +15,14 @@ const Login = () => {
   const { login, register, googleSignIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(location.state?.message || '');
 
   useEffect(() => {
-    if (location.state?.message) {
+    if (location.state?.message && location.state.message !== message) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMessage(location.state.message);
     }
-  }, [location]);
+  }, [location, message]);
 
   const syncWithBackend = async (user) => {
     try {

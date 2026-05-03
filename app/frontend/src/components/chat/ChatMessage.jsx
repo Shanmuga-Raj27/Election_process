@@ -1,4 +1,4 @@
-import { User, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion';
 
@@ -46,12 +46,13 @@ const ChatMessage = ({ message, isAI, isThinking, isStreaming }) => {
               </div>
             ) : isAI ? (
               <ReactMarkdown
+                /* eslint-disable no-unused-vars */
                 components={{
-                  strong: ({ node: _, ...props }) => <strong className="font-bold text-navy border-b border-saffron/30" {...props} />,
-                  ul: ({ node: _, ...props }) => <ul className="list-disc ml-5 space-y-2 my-4 marker:text-saffron" {...props} />,
-                  li: ({ node: _, ...props }) => <li className="text-gray-700 font-medium" {...props} />,
-                  p: ({ node: _, ...props }) => <p className="mb-4 last:mb-0" {...props} />,
-                  a: ({ node: _, ...props }) => (
+                  strong: ({ node, ...props }) => <strong className="font-bold text-navy border-b border-saffron/30" {...props} />,
+                  ul: ({ node, ...props }) => <ul className="list-disc ml-5 space-y-2 my-4 marker:text-saffron" {...props} />,
+                  li: ({ node, ...props }) => <li className="text-gray-700 font-medium" {...props} />,
+                  p: ({ node, ...props }) => <p className="mb-4 last:mb-0" {...props} />,
+                  a: ({ node, ...props }) => (
                     <a
                       className="text-navy font-bold underline decoration-saffron decoration-2 underline-offset-4 hover:text-saffron transition-colors"
                       target="_blank"
@@ -60,6 +61,7 @@ const ChatMessage = ({ message, isAI, isThinking, isStreaming }) => {
                     />
                   ),
                 }}
+                /* eslint-enable no-unused-vars */
               >
                 {message}
               </ReactMarkdown>

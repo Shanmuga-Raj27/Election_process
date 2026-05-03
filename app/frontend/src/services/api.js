@@ -122,6 +122,6 @@ export const chatApi = {
           'Authorization': `Bearer ${token}`
         }
       });
-    } catch (e) { /* Silent fail for optimization pings */ }
+    } catch { /* Silent fail for optimization pings */ }
   }
 };

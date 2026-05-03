@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/common/Navbar';
 import * as AuthContext from '../context/AuthContext';
 
 // We will spy on the useAuth hook

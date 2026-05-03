@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Menu, X, Plus, Home } from 'lucide-react';
+import { Menu, Home } from 'lucide-react';
 import Sidebar from '../components/chat/Sidebar';
 import ChatArea from '../components/chat/ChatArea';
 import { chatApi } from '../services/api';
@@ -172,7 +172,9 @@ const Chat = () => {
     try {
       const token = await currentUser.getIdToken();
       chatApi.warmup(token);
-    } catch (e) {}
+    } catch (err) {
+      console.warn("Warmup ignored:", err);
+    }
   };
 
   return (

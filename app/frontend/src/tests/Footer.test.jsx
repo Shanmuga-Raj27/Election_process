@@ -8,7 +8,7 @@
  */
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import Footer from '../components/Footer';
+import Footer from '../components/common/Footer';
 
 describe('Footer Component – Accessibility & Security', () => {
   it('renders inside a semantic <footer> HTML element', () => {

@@ -8,7 +8,7 @@
  */
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import Hero from '../components/Hero';
+import Hero from '../components/home/Hero';
 
 describe('Hero Component – Accessibility & Structure', () => {
   it('renders the main heading with the translation key', () => {

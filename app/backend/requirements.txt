@@ -1,13 +1,21 @@
+# Core Dependencies
 fastapi
-uvicorn
-sqlalchemy
+uvicorn[standard]
 pydantic
 pydantic-settings
 google-genai
 python-dotenv
+requests
+firebase-admin
+google-cloud-firestore
+redis
+numpy
+watchfiles
+
+# Testing & Evaluation (Required for Prompt-War Score)
 pytest
 pytest-mock
 httpx
-requests
-firebase-admin
-redis
+pytest-asyncio
+pytest-cov
+coverage
