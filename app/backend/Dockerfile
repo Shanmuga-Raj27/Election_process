@@ -28,12 +28,12 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 # Copy application source
 COPY . .
 
-# Set environment defaults
-ENV PORT=8000
+# Set environment defaults to match Google Cloud Run exactly
+ENV PORT=8080
 ENV PYTHONUNBUFFERED=1
 
-# Expose the dynamic port
-EXPOSE 8000
+# Expose the Cloud Run port
+EXPOSE 8080
 
-# Launch using uvicorn with host-binding for Cloud Run
-CMD uvicorn main:app --host 0.0.0.0 --port $PORT
+# Launch using uvicorn with explicit bracket syntax (Exec form)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
