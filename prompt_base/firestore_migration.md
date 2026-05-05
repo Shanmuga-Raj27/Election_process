@@ -5,7 +5,7 @@
 ---
 
 ## 🛠️ Phase 1: Database Migration (SQLite to Firestore)
-- **Directive**: Completely remove `SQLAlchemy` and SQLite dependencies.
+- **Directive**: Completely remove `SQLAlchemy` and `SQLite` dependencies.
 - **Action**:
     1. Implement the `firebase-admin` SDK for all database interactions.
     2. Model the chat history as a **NoSQL Document Collection** (`users/{uid}/sessions/{session_id}/messages`).

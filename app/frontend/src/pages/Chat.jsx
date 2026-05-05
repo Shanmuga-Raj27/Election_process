@@ -131,35 +131,41 @@ const Chat = () => {
       });
     } catch (error) {
       console.error("Chat Error:", error);
-      // UX Mask: Keep the 'Thinking' state active for 30 seconds even on failure
+      
+      // Keep the 'Thinking' state active for 30 seconds as requested
       await new Promise(r => setTimeout(r, 30000)); 
       
-      const busyMessage = "Backend server is busy, please try again later.";
+      const errorDetail = error.message || "Backend server is busy";
+      const busyMessage = `${errorDetail}. Please try again in a moment.`;
       let currentText = "";
       const words = busyMessage.split(" ");
 
-      // Stop thinking and start 'typing' the busy message
+      // Stop thinking and start 'typing' the actual error message
       setMessages(prev => {
         const updated = [...prev];
         updated[updated.length - 1] = { text: '', isAI: true, isThinking: false, isStreaming: true };
         return updated;
       });
 
-      // Simulate typing for the busy message
+      // Simulate typing for the error message
       for (let i = 0; i < words.length; i++) {
         currentText += (i === 0 ? "" : " ") + words[i];
         const textToSet = currentText;
         setMessages(prev => {
           const updated = [...prev];
-          updated[updated.length - 1] = { ...updated[updated.length - 1], text: textToSet };
+          if (updated.length > 0) {
+            updated[updated.length - 1] = { ...updated[updated.length - 1], text: textToSet };
+          }
           return updated;
         });
-        await new Promise(r => setTimeout(r, 50)); 
+        await new Promise(r => setTimeout(r, 40)); 
       }
 
       setMessages(prev => {
         const updated = [...prev];
-        updated[updated.length - 1] = { ...updated[updated.length - 1], isStreaming: false };
+        if (updated.length > 0) {
+          updated[updated.length - 1] = { ...updated[updated.length - 1], isStreaming: false };
+        }
         return updated;
       });
     } finally {

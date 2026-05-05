@@ -21,11 +21,12 @@ os.environ["TESTING"] = "1"
 
 # ─── Pre-Import Mocks ───────────────────────────────────────────────────
 # We mock these BEFORE importing main to prevent it from trying to connect 
-# to real Google Cloud services during test collection.
-import firebase_admin
-if not firebase_admin._apps:
-    firebase_admin.initialize_app = MagicMock()
-    firebase_admin.credentials = MagicMock()
+# to real Google Cloud services during test collection UNLESS we are in real mode.
+if os.getenv("REAL_FIREBASE") != "1":
+    import firebase_admin
+    if not firebase_admin._apps:
+        firebase_admin.initialize_app = MagicMock()
+        firebase_admin.credentials = MagicMock()
 
 # ─── App Import ─────────────────────────────────────────────────────────
 from main import app, get_current_user
@@ -34,6 +35,7 @@ from main import app, get_current_user
 class MockFirestore:
     def __init__(self):
         self.data = {} # Simulated document storage {collection: {doc_id: data}}
+        self.project = "neic-project-mock"
 
     def collection(self, name):
         return MockCollection(self, name)
@@ -88,6 +90,10 @@ class MockDocument:
         if self.coll not in self.db.data: self.db.data[self.coll] = {}
         self.db.data[self.coll][self.doc_id] = data
 
+    def delete(self):
+        if self.coll in self.db.data:
+            self.db.data[self.coll].pop(self.doc_id, None)
+
     def update(self, data):
         # Simplified update (handles ArrayUnion by just appending if it's a list)
         current = self.db.data.get(self.coll, {}).get(self.doc_id, {})
@@ -101,13 +107,17 @@ class MockDocument:
 
 # ─── Auth Overrides ──────────────────────────────────────────────────
 async def override_get_current_user():
-    """Default mock auth: all requests are authenticated as 'test_user_id'."""
     return {"uid": "test_user_id", "email": "test@example.com"}
 
 # ─── Fixtures ─────────────────────────────────────────────────────────
 @pytest.fixture(autouse=True)
 def mock_db_init(mocker):
     """Intercept Firestore initialization and inject our MockFirestore."""
+    # Only mock if REAL_FIREBASE is NOT set
+    if os.getenv("REAL_FIREBASE") == "1":
+        yield None
+        return
+
     mock_fs = MockFirestore()
     mocker.patch("main.db", mock_fs)
     # Patch firestore.ArrayUnion to work with our mock
@@ -115,7 +125,7 @@ def mock_db_init(mocker):
     mock_union.side_effect = lambda x: MagicMock(union_elements=x)
     mocker.patch("main.firestore.ArrayUnion", mock_union)
     
-    app.dependency_overrides[get_current_user] = override_get_current_user
+    # IMPORTANT: We removed the auto-authentication here to fix security tests
     yield mock_fs
     app.dependency_overrides = {}
 

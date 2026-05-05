@@ -85,26 +85,35 @@ export const chatApi = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'X-Firebase-Auth': `Bearer ${token}`
       },
       body: JSON.stringify({ session_id: sessionId, message }),
     });
 
     if (!response.ok) {
-      throw new Error(`Stream request failed with status ${response.status}`);
+      const errorData = await response.json().catch(() => ({ detail: 'Unknown error' }));
+      throw new Error(`Stream request failed: ${errorData.detail || response.statusText}`);
     }
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let fullText = '';
 
+    let chunkCount = 0;
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
 
       const chunk = decoder.decode(value, { stream: true });
-      fullText += chunk;
-      onChunk(fullText);
+      if (chunk) {
+        chunkCount++;
+        fullText += chunk;
+        onChunk(fullText);
+      }
+    }
+
+    if (chunkCount === 0 && fullText.length === 0) {
+      throw new Error("Server connected but sent no data (Possible AI/Safety Block)");
     }
 
     return fullText;

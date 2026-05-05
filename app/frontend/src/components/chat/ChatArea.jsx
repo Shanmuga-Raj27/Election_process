@@ -112,9 +112,6 @@ const ChatArea = ({ messages, isTyping, onSendMessage, onTypingStart }) => {
       <div className="flex-1 overflow-y-auto p-4 lg:p-10 space-y-8 custom-scrollbar bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px]">
         {messages.length === 0 && !isTyping ? (
           <div className="h-full flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-4">
-            <div className="w-20 h-20 bg-navy rounded-3xl flex items-center justify-center text-white mb-8 shadow-xl rotate-3">
-              <span className="text-3xl font-black">NEA</span>
-            </div>
             <h2 className="text-3xl lg:text-4xl font-black text-navy mb-4 h2-mobile">
               Hello, I am NEA - AI.
             </h2>
@@ -201,9 +198,6 @@ const ChatArea = ({ messages, isTyping, onSendMessage, onTypingStart }) => {
               <Send size={24} />
             </button>
           </form>
-          <p className="text-[10px] text-center text-gray-400 mt-4 font-bold uppercase tracking-[0.2em]">
-            Official ECI Information Companion
-          </p>
         </div>
       </div>
     </main>
