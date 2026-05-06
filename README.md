@@ -77,7 +77,7 @@ Election Assistant/
 ---
 
 ## 💼 Social & Contact
-- **LinkedIn Post:** [🔗 View on LinkedIn](https://www.linkedin.com/posts/shanmugaraj27_buildwithai-promptwarsvirtual-ai-activity-7456341060399570944-2pgt)
+- **LinkedIn Post:** [🔗 View on LinkedIn](https://www.linkedin.com/posts/shanmugaraj27_civictech-generativeai-buildwithai-ugcPost-7457435369119125505-goXQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFP0UbUB50NOIOxnb-R37ovQLTiUSEECljY)
 - **Developer:** **Shanmugaraj R**
 - [LinkedIn Profile](https://www.linkedin.com/in/shanmugaraj27) | [GitHub Profile](https://github.com/Shanmuga-Raj27)
 
