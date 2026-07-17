@@ -49,7 +49,10 @@ You are an expert Python Full Stack developer. I am building an educational CLI-
 Please analyze the current structure now and generate the code file by file.
 
 ## 7. Scalability
-* Maintain scalability for future React frontend connection. improve Code Quality – structure, readability, maintainability
+* Maintain scalability for future React frontend connection.
+
+## 8. Code Quality
+improve Code Quality – structure, readability, maintainability
 Security – safe and responsible implementation
 Efficiency – optimal use of resources
 Testing – validation of functionality

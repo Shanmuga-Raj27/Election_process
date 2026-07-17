@@ -1,6 +1,6 @@
 # Navigate to backend (if not already there)
 
-cd app\backend
+ cd app\backend
 .venv\Scripts\activate
 
 # Install
@@ -44,14 +44,14 @@ npm test -- --run
 #### **1. Check API Health**
 Verify the backend is online and responding:
 ```powershell
-curl http://0.0.0.0:8080/
+curl http://127.0.0.1:8000/
 ```
 *Expected: `{"message": "NEA - AI Backend is online."}`*
 
 #### **2. Verify AI Service Logic (CLI)**
 Test the Gemini integration directly in the terminal without using the web UI:
 ```
-cd app/backend
+ cd app/backend
 python cli_chatbot.py
 
 ```
@@ -71,7 +71,7 @@ npm run dev
 #### **2. Production Build Check**
 Verify the build process works correctly (pre-deployment check):
 ```
-cd app/frontend
+ cd app/frontend
 npm run build
 
 ```
@@ -83,3 +83,4 @@ cd app/frontend
 npm run lint
 
 ```
+   firebase deploy --only hosting

@@ -1,40 +1,45 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword, 
-  signOut, 
-  onAuthStateChanged, 
-  signInWithPopup, 
-  updateProfile 
-} from 'firebase/auth';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { auth, googleProvider } from '../firebase/firebase';
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  signInWithPopup, 
+  onAuthStateChanged,
+  updateProfile
+} from 'firebase/auth';
 
 const AuthContext = createContext();
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  return useContext(AuthContext);
+}
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const register = async (email, password, name) => {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(userCredential.user, { displayName: name });
-    return userCredential;
-  };
+  function register(email, password, name) {
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        if (name) {
+          await updateProfile(userCredential.user, { displayName: name });
+        }
+        return userCredential;
+      });
+  }
 
-  const login = (email, password) => {
+  function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
-  };
+  }
 
-  const logout = () => {
+  function logout() {
     return signOut(auth);
-  };
+  }
 
-  const googleSignIn = () => {
+  function googleSignIn() {
     return signInWithPopup(auth, googleProvider);
-  };
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -47,11 +52,11 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     currentUser,
+    loading,
     login,
     register,
     logout,
-    googleSignIn,
-    loading
+    googleSignIn
   };
 
   return (
@@ -59,4 +64,4 @@ export const AuthProvider = ({ children }) => {
       {!loading && children}
     </AuthContext.Provider>
   );
-};
+}

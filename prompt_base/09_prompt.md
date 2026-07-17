@@ -3,7 +3,7 @@ You are an Expert Full Stack Developer and UI/UX Specialist. Your objective is t
 
 This page must feature a clean, modern, mobile-friendly layout designed to help first-time voters understand the Electronic Voting Machine process visually. 
 
-**Critical Requirement:** Maintain multilingual support (English, Tamil, Hindi) using proper translation files (e.g., i18n/locales) for all text elements.
+**Critical Requirement:** Must maintain multilingual support (English, Tamil, Hindi) using proper existing json translation files for all text elements.
 
 # Phase 1: Page Structure & UI Implementation
 
@@ -21,12 +21,7 @@ Create a modern, responsive 2-column layout to visually explain the EVM. It must
 *   **Left Column (Visuals):** 
     *   Display an EVM machine image (Ballot Unit) and an EVM voting GIF/animation (VVPAT working).
     *   Use clean white background cards with rounded borders and Indian flag-inspired accent borders.
-*   **Right Column (Explanations):** Add descriptive cards for EVM components:
-    *   *Ballot Unit:* Used by voters to cast votes.
-    *   *Control Unit:* Operated by polling officers.
-    *   *VVPAT:* Displays vote confirmation briefly.
-    *   *Candidate Buttons:* Used to select candidates.
-    *   **Card Styling:** Include an icon, a hover effect with subtle animation, a colored left border, and simple beginner-friendly text.
+*   **Right Column (Explanations):** add another image 
 
 ## Section 3: Interactive "How to Vote" Cards (4 Steps)
 Create an interactive step-by-step timeline or animated card UI. Use simple language, large readable typography, and smooth transitions. Support hover/tap animations and number each step.
