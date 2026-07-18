@@ -1,6 +1,6 @@
 # NEIC: National Election Information Companion
 
-**Live Link:** [🔗 neic-project.web.app](https://neic-project.netlify.app/)
+**Live Link:** [🔗 neic-project.netlify.app](https://neic-project.netlify.app/)
 
 > [!NOTE]  
 > **A Google Virtual PromptWar Innovation:** This project is strictly for educational and civic empowerment purposes, engineered entirely through **Google Antigravity AI-assisted coding**, advanced prompt engineering, and state-of-the-art LLM optimization techniques.
@@ -46,11 +46,11 @@ This platform goes beyond simple chat by implementing professional-grade Natural
 
 ### Frontend (Client)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E) ![Framer](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
-* **Hosting**: Firebase Hosting (Global Edge Network)
+* **Hosting**: Netlify (Global Edge Network)
 
 ### Backend (Server)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi) ![Firestore](https://img.shields.io/badge/Cloud_Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-* **Infrastructure**: Google Cloud Run (Dockerized Serverless Compute)
+* **Infrastructure**: Render (Stateless Web Service Compute)
 
 ---
 
