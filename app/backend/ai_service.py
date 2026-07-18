@@ -240,7 +240,7 @@ class AIService:
                         yield chunk.text
                 
                 if not has_data:
-                    print(f"⚠️  WARNING: Model {model_id} returned empty content (possibly filtered).")
+                    print(f"[WARNING] Model {model_id} returned empty content (possibly filtered).")
                     yield "I'm sorry, I cannot provide a response to that specific query due to safety guidelines or policy restrictions."
                 return # Success!
 

@@ -43,20 +43,30 @@ def initialize_firebase():
         base_path = Path(__file__).parent
         cert_path = base_path / "serviceAccountKey.json"
         
-        if not cert_path.exists():
-            print(f"⚠️  WARNING: {cert_path} not found. Falling back to Application Default.")
-            cred = credentials.ApplicationDefault()
-        else:
+        firebase_creds_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+        
+        if firebase_creds_json:
+            try:
+                import json
+                cred_dict = json.loads(firebase_creds_json)
+                cred = credentials.Certificate(cred_dict)
+            except Exception as e:
+                print(f"[ERROR] Failed to load Firebase credentials from Env: {str(e)}")
+                cred = credentials.ApplicationDefault()
+        elif cert_path.exists():
             cred = credentials.Certificate(str(cert_path))
+        else:
+            print(f"[WARNING] {cert_path} not found. Falling back to Application Default.")
+            cred = credentials.ApplicationDefault()
             
         firebase_admin.initialize_app(cred, {
             'projectId': 'neic-project'
         })
-        print(f"✅ Firebase Initialized (Project: neic-project, Path: {cert_path})")
+        print(f"[INFO] Firebase Initialized (Project: neic-project, Path: {cert_path})")
 
 initialize_firebase()
 db = firestore.client()
-print("🚀 Firestore connected successfully.")
+print("[INFO] Firestore connected successfully.")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -69,7 +79,9 @@ app = FastAPI(title="NEA - AI (Cloud-Native)", lifespan=lifespan)
 # Hardened CORS policy for production
 ALLOWED_ORIGINS = [
     "https://neic-project.web.app",
-    "https://neic-project-495211.web.app"
+    "https://neic-project-495211.web.app",
+    "https://neic-project.firebaseapp.com",
+    "https://neic-project.netlify.app"
 ]
 
 # Origins are now handled by the wildcard middleware below
@@ -80,6 +92,8 @@ app.add_middleware(
     allow_origins=[
         "https://neic-project.web.app",
         "https://neic-project-495211.web.app",
+        "https://neic-project.firebaseapp.com",
+        "https://neic-project.netlify.app",
         "http://localhost:5173"
     ],
     allow_credentials=True,
@@ -110,10 +124,10 @@ async def get_current_user(x_firebase_auth: Optional[str] = Header(None)):
     try:
         return auth.verify_id_token(token, clock_skew_seconds=10)
     except Exception as e:
-        print(f"❌ AUTH FAILED: {str(e)}")
+        print(f"[ERROR] AUTH FAILED: {str(e)}")
         # Check if it's a project ID mismatch
         if "project_id" in str(e).lower():
-            print("💡 TIP: The token provided belongs to a different project than the server.")
+            print("[INFO] TIP: The token provided belongs to a different project than the server.")
         raise HTTPException(status_code=401, detail=f"Authentication failed: {str(e)}")
 
 # ─── Endpoints ───────────────────────────────────────────────────────────
@@ -216,7 +230,7 @@ async def chat_stream(request: ChatRequest, user=Depends(get_current_user)):
                         full_response += chunk
                         yield chunk
                 except Exception as ai_err:
-                    print(f"⚠️  AI STREAM ERROR: {ai_err}")
+                    print(f"[ERROR] AI STREAM ERROR: {ai_err}")
                     error_msg = f" [AI Error: {str(ai_err)}]"
                     yield error_msg
                     full_response += error_msg
@@ -246,7 +260,7 @@ async def chat_stream(request: ChatRequest, user=Depends(get_current_user)):
                 
         return StreamingResponse(generate(), media_type="text/event-stream")
     except Exception as e:
-        print(f"❌ CHAT ENDPOINT ERROR: {str(e)}")
+        print(f"[ERROR] CHAT ENDPOINT ERROR: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Server Crash: {str(e)}")
 
 @app.post("/chat/warmup")

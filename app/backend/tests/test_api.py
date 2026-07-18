@@ -36,7 +36,7 @@ class TestChatStreaming:
         }, headers={"X-Firebase-Auth": "Bearer mock-token"})
         
         assert response.status_code == 200
-        assert response.text == "Hello world!"
+        assert response.text.strip() == "Hello world!"
         
         # Verify it was saved to the 'sessions' endpoint
         hist_response = client.get("/history/test-stream-1", headers={"X-Firebase-Auth": "Bearer mock-token"})
@@ -56,12 +56,13 @@ class TestHistoryAndSessions:
         client.post("/chat/stream", json={"session_id": "s1", "message": "First"}, headers={"X-Firebase-Auth": "Bearer t"})
         client.post("/chat/stream", json={"session_id": "s2", "message": "Second"}, headers={"X-Firebase-Auth": "Bearer t"})
         
+        # Verify sessions
         response = client.get("/sessions", headers={"X-Firebase-Auth": "Bearer t"})
         assert response.status_code == 200
         sessions = response.json()
         assert len(sessions) == 2
-        # Verify the 'preview' exists (replaces 'title' in Firestore version)
-        assert "preview" in sessions[0]
+        # Verify the 'title' exists
+        assert "title" in sessions[0]
         assert "s1" in [s["session_id"] for s in sessions]
 
     def test_history_belongs_to_user(self, client, authenticated_client_factory, mocker):

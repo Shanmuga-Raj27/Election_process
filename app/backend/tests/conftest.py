@@ -27,6 +27,7 @@ if os.getenv("REAL_FIREBASE") != "1":
     if not firebase_admin._apps:
         firebase_admin.initialize_app = MagicMock()
         firebase_admin.credentials = MagicMock()
+        firebase_admin._apps = {"[DEFAULT]": MagicMock()}
 
 # ─── App Import ─────────────────────────────────────────────────────────
 from main import app, get_current_user

@@ -45,7 +45,7 @@ def test_authenticated_chat_flow(authenticated_client):
     # 2. Firestore 'get' worked
     # 3. AI Service initialized
     assert response.status_code == 200
-    assert response.headers["content-type"] == "text/plain; charset=utf-8"
+    assert "text/event-stream" in response.headers["content-type"]
 
 def test_firestore_direct():
     """Verify direct Firestore write/read works on neic-project."""
